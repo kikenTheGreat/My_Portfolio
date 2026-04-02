@@ -1,21 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kent Jocel Lusdoc - BSIT Developer</title>
+    <title>Kent Jocel Lusdoc - Web Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.min.css">
+    <style>
+        .tech-stack-wrap {
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        .tech-stack-card {
+            background:
+                radial-gradient(circle at 5% 0%, rgba(59, 130, 246, 0.16), transparent 42%),
+                radial-gradient(circle at 95% 100%, rgba(16, 185, 129, 0.12), transparent 35%),
+                var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .tech-stack-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tech-stack-title {
+            font-size: 2.1rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        .tech-stack-subtitle {
+            margin: 0.35rem 0 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .tech-stack-view {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background-color: rgba(255, 255, 255, 0.02);
+            transition: all 0.2s ease;
+        }
+
+        .tech-stack-view:hover {
+            border-color: var(--accent);
+            color: white;
+            background-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .tech-stack-view i {
+            font-size: 0.8rem;
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .stack-group {
+            margin-bottom: 0;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.8rem;
+            background-color: rgba(255, 255, 255, 0.015);
+        }
+
+        .stack-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .stack-group h3 {
+            margin: 0 0 0.8rem;
+            font-size: 1.1rem;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+        }
+
+        .stack-group h3 i {
+            color: var(--accent);
+            font-size: 0.95rem;
+            width: 1rem;
+            text-align: center;
+        }
+
+        .stack-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+
+        .stack-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            border: 1px solid var(--border);
+            border-radius: 0.45rem;
+            padding: 0.45rem 0.7rem;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            background-color: var(--bg-dark);
+            transition: all 0.2s ease;
+        }
+
+        .stack-chip i {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .stack-chip:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .highlighted-project {
+            border: 1px solid rgba(59, 130, 246, 0.55);
+            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
+        }
+
+        .highlighted-project .project-category {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        }
+
+        .highlight-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.55rem;
+            margin-bottom: 0.7rem;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid rgba(59, 130, 246, 0.45);
+            color: #bfdbfe;
+            background-color: rgba(37, 99, 235, 0.15);
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .stack-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tech-stack-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .tech-stack-title {
+                font-size: 1.65rem;
+            }
+
+            .stack-group h3 {
+                font-size: 1.02rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo">KL</div>
-            
-          
- 
-            </button>
             <ul class="nav-menu">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#features">Features</a></li>
@@ -43,29 +217,26 @@
         <div class="hero-grid">
             <div class="hero-content">
                 <h1>Kent Jocel<br>Lusdoc</h1>
-                <p class="role">BSIT Student & Aspiring Developer</p>
-                <p>Competitive BSIT student with proven problem-solving skills through coding competitions. Specializing in object-oriented programming and building scalable applications.</p>
-                
+                <p class="role">Web Developer</p>
+                <p>I build production-ready web applications using TypeScript, React.js, Vue.js, Laravel, and .NET. I
+                    focus on clean architecture, maintainable code, and practical delivery for real business needs.</p>
+
                 <div class="hero-actions">
                     <a href="#contact" class="btn btn-primary">Get In Touch</a>
                     <a href="#portfolio" class="btn btn-secondary">View Work</a>
                 </div>
 
                 <div class="social-links">
-                    <a href="https://github.com/" class="social-link" target="_blank">
+                    <a href="https://github.com/kikenTheGreat" class="social-link" target="_blank">
                         <i class="fab fa-github"></i>
                     </a>
                     <a href="https://www.linkedin.com/feed/" class="social-link" target="_blank">
                         <i class="fab fa-linkedin"></i>
                     </a>
-<a 
-    href="https://mail.google.com/mail/?view=cm&fs=1&to=kentjocellusdoc@gmail.com&su=Inquiry%20from%20Portfolio"
-    target="_blank"
-    class="social-link"
-    aria-label="Send email to Kent Jocel Lusdoc via Gmail"
->
-    <i class="fas fa-envelope"></i>
-</a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kentjocellusdoc@gmail.com&su=Inquiry%20from%20Portfolio"
+                        target="_blank" class="social-link" aria-label="Send email to Kent Jocel Lusdoc via Gmail">
+                        <i class="fas fa-envelope"></i>
+                    </a>
 
 
                 </div>
@@ -79,46 +250,61 @@
 
     <!-- Features Section -->
     <section id="features">
-        <div class="section-header">
- 
-            <h2 class="section-title">Features</h2>
-        </div>
+        <div class="tech-stack-wrap">
+            <div class="tech-stack-card">
+                <div class="tech-stack-header">
+                    <div>
+                        <h2 class="tech-stack-title">Tech Stack</h2>
+                        <p class="tech-stack-subtitle">Professional tools and technologies I use to ship production
+                            work.</p>
+                    </div>
+                </div>
 
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-code feature-icon"></i>
-                <h3>Web Development</h3>
-                <p>Building responsive websites with clean structure and modern design principles.</p>
-            </div>
+                <div class="stack-grid">
+                    <div class="stack-group">
+                        <h3><i class="fas fa-laptop-code"></i> Front End</h3>
+                        <div class="stack-chips">
+                            <span class="stack-chip"><i class="fas fa-check"></i> HTML</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> CSS</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> Tailwind CSS</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> Bootstrap</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> TypeScript</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> React.js</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> Vue.js</span>
+                        </div>
+                    </div>
 
-            <div class="feature-card">
-                <i class="fas fa-database feature-icon"></i>
-                <h3>Backend Development</h3>
-                <p>Proficient in C# and Java with SQL Server integration and API services.</p>
-            </div>
+                    <div class="stack-group">
+                        <h3><i class="fas fa-server"></i> Back End</h3>
+                        <div class="stack-chips">
+                            <span class="stack-chip"><i class="fas fa-check"></i> PHP</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> C# .NET</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> Laravel</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> Node.js (still learning)</span>
+                        </div>
+                    </div>
 
-            <div class="feature-card">
-                <i class="fas fa-mobile-alt feature-icon"></i>
-                <h3>Mobile Development</h3>
-                <p>Android app development using Java with SQLite database integration.</p>
-            </div>
+                    <div class="stack-group">
+                        <h3><i class="fas fa-database"></i> Database</h3>
+                        <div class="stack-chips">
+                            <span class="stack-chip"><i class="fas fa-check"></i> MySQL</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> SQL Server</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> Supabase</span>
+                        </div>
+                    </div>
 
-            <div class="feature-card">
-                <i class="fas fa-globe feature-icon"></i>
-                <h3>Full Stack Solutions</h3>
-                <p>Complete desktop applications with C# Windows Forms and modern UI frameworks.</p>
-            </div>
-
-            <div class="feature-card">
-                <i class="fas fa-paint-brush feature-icon"></i>
-                <h3>Code Optimization</h3>
-                <p>Debugging and improving code logic for enhanced performance and efficiency.</p>
-            </div>
-
-            <div class="feature-card">
-                <i class="fas fa-lightbulb feature-icon"></i>
-                <h3>Problem Solving</h3>
-                <p>Competition-proven skills in OOP concepts and algorithmic thinking.</p>
+                    <div class="stack-group full-width">
+                        <h3><i class="fas fa-screwdriver-wrench"></i> Developer Tools</h3>
+                        <div class="stack-chips">
+                            <span class="stack-chip"><i class="fas fa-check"></i> Discord</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> VS Code</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> Jira</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> Git</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> GitHub</span>
+                            <span class="stack-chip"><i class="fas fa-check"></i> Microsoft Teams</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -131,63 +317,77 @@
         </div>
 
         <div class="portfolio-grid">
-            <div class="project-card">
+            <div class="project-card highlighted-project">
                 <div class="project-image">
-                    <img src="CodeFest_Certificate.png" alt="CodeFest">
-                    <div class="project-category">Competition</div>
+                    <img src="solar.png" alt="Solar Power Energy Corporation">
+                    <div class="project-category">Highlighted</div>
                 </div>
                 <div class="project-info">
-                    <h3>Mobile Application Platform</h3>
+                    <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+                    <h3>Solar Power Energy Corporation</h3>
                     <div class="project-tags">
-                        <span class="project-tag">Android Studio</span>
-                        <span class="project-tag">Java</span>
-                        <span class="project-tag">SQLite</span>
-
-                                                         <a href="https://drive.google.com/file/d/1PHimiTOzNvU48-sCS40NM4t6YwRM1z5e/view" target="_blank" class="project-link">
-    <i class="fab fa-github"></i> View Image
-</a>
-
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="CodingBee_Certificate.jpg" alt="Coding Bee">
-                    <div class="project-category">Achievement</div>
-                </div>
-                <div class="project-info">
-                    <h3>OOP Concept Mastery</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Java</span>
-                        <span class="project-tag">C#</span>
-                        <span class="project-tag">DSA</span>
-                                 
-               
-                        <a href="https://drive.google.com/file/d/1IUnkn7VIOyRHp4J603EZIyfGv1otWM0D/view" target="_blank" class="project-link">
-                           <br> <i class="fab fa-github"></i> View Certification
+                        <span class="project-tag">Corporate Website</span>
+                        <span class="project-tag">Frontend</span>
+                        <span class="project-tag">SEO Ready</span>
+                        <a href="https://solarpower.com.ph/" target="_blank" class="project-link">
+                            <i class="fas fa-up-right-from-square"></i> Visit Website
                         </a>
+                    </div>
+                </div>
+            </div>
 
+            <div class="project-card highlighted-project">
+                <div class="project-image">
+                    <img src="wcg-dubai.png" alt="World City Real Estate">
+                    <div class="project-category">Highlighted</div>
+                </div>
+                <div class="project-info">
+                    <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+                    <h3>World City Real Estate</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Real Estate</span>
+                        <span class="project-tag">Business Site</span>
+                        <span class="project-tag">UI/UX</span>
+                        <a href="https://worldcityrealestate.com/" target="_blank" class="project-link">
+                            <i class="fas fa-up-right-from-square"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card highlighted-project">
+                <div class="project-image">
+                    <img src="wcg-architect.png" alt="World City Architect">
+                    <div class="project-category">Highlighted</div>
+                </div>
+                <div class="project-info">
+                    <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+                    <h3>World City Architect</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Architecture</span>
+                        <span class="project-tag">Brand Website</span>
+                        <span class="project-tag">In Progress</span>
+                        <span class="project-link"><i class="fas fa-hourglass-half"></i> Publishing Soon</span>
                     </div>
                 </div>
             </div>
 
             <div class="project-card">
                 <div class="project-image">
-                    <img src="Library_Capstone.png" alt="Library System">
-                    <div class="project-category">Capstone</div>
+                    <img src="wedding-website.png" alt="Website For Couple Wedding">
+                    <div class="project-category">Highlighted</div>
                 </div>
                 <div class="project-info">
-                    <h3>Library Management System</h3>
+                    <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+                    <h3>Website For Couple Wedding</h3>
                     <div class="project-tags">
-                        <span class="project-tag">C# .NET</span>
-                        <span class="project-tag">SQL Server</span>
-                        <span class="project-tag">Google API</span>
-
-                                                <a href="https://github.com/kikenTheGreat/Library-Final" target="_blank" class="project-link">
-    <i class="fab fa-github"></i> View Project
-</a>
+                        <span class="project-tag">Landing Page</span>
+                        <span class="project-tag">Animation</span>
+                        <span class="project-tag">Responsive</span>
+                        <a href="https://donna-website-animated-git-main-kents-projects-92421bfa.vercel.app/"
+                            target="_blank" class="project-link">
+                            <i class="fas fa-up-right-from-square"></i> Visit Website
+                        </a>
                     </div>
                 </div>
             </div>
@@ -204,11 +404,28 @@
                         <span class="project-tag">Javascript</span>
                         <span class="project-tag">PostgreSQL</span>
                         <br>
-           <a href="https://mini-telegram-app-v1.vercel.app/" target="_blank" class="project-link">
-    <i class="fab fa-github"></i> View Project
-</a>
+                        <a href="https://mini-telegram-app-v1.vercel.app/" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View Project
+                        </a>
+                    </div>
+                </div>
+            </div>
 
+                <div class="project-card">
+                <div class="project-image">
+                    <img src="Library_Capstone.png" alt="Library System">
+                    <div class="project-category">Capstone</div>
+                </div>
+                <div class="project-info">
+                    <h3>Library Management System</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">C# .NET</span>
+                        <span class="project-tag">SQL Server</span>
+                        <span class="project-tag">Google API</span>
 
+                        <a href="https://github.com/kikenTheGreat/Library-Final" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View Project
+                        </a>
                     </div>
                 </div>
             </div>
@@ -225,8 +442,8 @@
                         <span class="project-tag">Blender</span>
                         <br>
 
-     <a href="https://github.com/kikenTheGreat/HorrorGAME" target="_blank" class="project-link">
-                           <br> <i class="fab fa-github"></i> View Project
+                        <a href="https://github.com/kikenTheGreat/HorrorGAME" target="_blank" class="project-link">
+                            <br> <i class="fab fa-github"></i> View Project
                         </a>
 
                     </div>
@@ -245,42 +462,88 @@
                         <span class="project-tag">SQL Server</span>
                         <span class="project-tag">Guna UI</span>
 
-                                     <br>
+                        <br>
                         <a href="https://github.com/kikenTheGreat/Pharmacy" target="_blank" class="project-link">
-    <i class="fab fa-github"></i> View Project
-</a>
+                            <i class="fab fa-github"></i> View Project
+                        </a>
                     </div>
                 </div>
             </div>
+
+                <div class="project-card">
+                <div class="project-image">
+                    <img src="CodeFest_Certificate.png" alt="CodeFest">
+                    <div class="project-category">Competition</div>
+                </div>
+                <div class="project-info">
+                    <h3>Mobile Application Platform</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Android Studio</span>
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">SQLite</span>
+
+                        <a href="https://drive.google.com/file/d/1PHimiTOzNvU48-sCS40NM4t6YwRM1z5e/view" target="_blank"
+                            class="project-link">
+                            <i class="fab fa-github"></i> View Image
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="CodingBee_Certificate.jpg" alt="Coding Bee">
+                    <div class="project-category">Achievement</div>
+                </div>
+                <div class="project-info">
+                    <h3>OOP Concept Mastery</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">C#</span>
+                        <span class="project-tag">DSA</span>
+
+
+                        <a href="https://drive.google.com/file/d/1IUnkn7VIOyRHp4J603EZIyfGv1otWM0D/view" target="_blank"
+                            class="project-link">
+                            <br> <i class="fab fa-github"></i> View Certification
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </section>
 
     <!-- Resume Section -->
     <section id="resume">
         <div class="section-header">
-        
+
             <h2 class="section-title">Resume</h2>
         </div>
 
         <div class="resume-grid">
             <div class="resume-block">
-                <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                <h3><i class="fas fa-briefcase"></i> Current Role</h3>
                 <div class="resume-item">
-                    <h4>Bachelor of Science in Information Technology</h4>
-                    <p class="resume-meta">STI College Santa Rosa | Dec 2025 | GPA: 1.6</p>
-                    <p>Dean Lister pursuing BSIT and aspiring Software Developer</p>
+                    <h4>Web Developer</h4>
+                    <p>Delivering web solutions across frontend and backend with a focus on maintainability and business
+                        impact.</p>
                 </div>
             </div>
 
             <div class="resume-block">
-                <h3><i class="fas fa-trophy"></i> Achievements</h3>
+                <h3><i class="fas fa-layer-group"></i> Core Stack</h3>
                 <div class="resume-item">
-                    <h4>Coding Bee Competition</h4>
-                    <p class="resume-meta">2nd Place | November 2025</p>
+                    <h4>Frontend</h4>
+                    <p class="resume-meta">HTML, CSS, Tailwind CSS, Bootstrap, TypeScript, React.js, Vue.js</p>
                 </div>
                 <div class="resume-item">
-                    <h4>CodeFest</h4>
-                    <p class="resume-meta">3rd Runner Up | November 2024</p>
+                    <h4>Backend and Data</h4>
+                    <p class="resume-meta">PHP Laravel, C# .NET, Node.js, MySQL, SQL Server, Supabase</p>
                 </div>
             </div>
 
@@ -303,14 +566,14 @@
             </div>
 
             <div class="resume-block">
-                <h3><i class="fas fa-language"></i> Languages</h3>
+                <h3><i class="fas fa-users"></i> Collaboration</h3>
                 <div class="language-item">
-                    <span>English</span>
-                    <span class="level">B2 – Upper Intermediate</span>
+                    <span>Engineering Workflow</span>
+                    <span class="level">VS Code, Git, GitHub, Jira</span>
                 </div>
                 <div class="language-item">
-                    <span>Tagalog</span>
-                    <span class="level">Native</span>
+                    <span>Team Communication</span>
+                    <span class="level">Discord, Microsoft Teams</span>
                 </div>
             </div>
         </div>
@@ -319,31 +582,32 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <h2>Let's Work Together</h2>
-        <p>I'm currently seeking internship opportunities. If you have a project in mind or want to discuss possibilities, feel free to reach out.</p>
+        <p>I am open to discussing new web projects, team collaborations, and long-term product work. Reach out and let
+            us build something valuable.</p>
         <div class="contact-buttons">
-        <a 
-  href="https://mail.google.com/mail/?view=cm&fs=1&to=kentjocellusdoc@gmail.com&su=Inquiry%20from%20Portfolio"
-  target="_blank"
-  class="btn btn-primary"
->
-    Email Me
-</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kentjocellusdoc@gmail.com&su=Inquiry%20from%20Portfolio"
+                target="_blank" class="btn btn-primary">
+                Email Me
+            </a>
 
-       <a href="Lusdoc_KentJocel_Internship-resume (2).pdf" download class="btn btn-secondary">Download CV</a>
+            <a href="Lusdoc_KentJocel_Internship-resume (2).pdf" download class="btn btn-secondary">Download Resume</a>
 
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 Kent Jocel Lusdoc. All rights reserved.</p>
+        <p>© 2026 Kent Jocel Lusdoc. All rights reserved.</p>
     </footer>
 
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-        
+        const themeIcon = document.getElementById('themeIcon');
+        const themeAnnouncer = document.getElementById('themeAnnouncer');
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
             const icon = mobileMenuBtn.querySelector('i');
@@ -351,9 +615,16 @@
             icon.classList.toggle('fa-times');
         });
 
-     
-  
- 
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+                setTheme(isLight ? 'dark' : 'light');
+            });
+        }
+
+
+
+
 
         function setTheme(theme) {
             if (theme === 'light') {
@@ -369,7 +640,7 @@
                     themeIcon.classList.add('fa-moon');
                 }
             }
-            try { localStorage.setItem('theme', theme); } catch (e) {}
+            try { localStorage.setItem('theme', theme); } catch (e) { }
             if (themeAnnouncer) {
                 const label = theme === 'light' ? 'Light theme enabled' : 'Dark theme enabled';
                 themeAnnouncer.textContent = label;
@@ -388,7 +659,7 @@
             }
         })();
 
-  
+
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -427,4 +698,5 @@
         });
     </script>
 </body>
+
 </html>
