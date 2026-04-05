@@ -2,659 +2,1214 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kent Jocel Lusdoc - Web Developer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.min.css">
-    <style>
-        .tech-stack-wrap {
-            margin-top: 1rem;
-            position: relative;
-        }
+  <meta charset="UTF-8">
+  <!-- [FIX 1] Viewport meta tag confirmed present -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kent Jocel Lusdoc - Web Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        .tech-stack-card {
-            background:
-                radial-gradient(circle at 5% 0%, rgba(59, 130, 246, 0.16), transparent 42%),
-                radial-gradient(circle at 95% 100%, rgba(16, 185, 129, 0.12), transparent 35%),
-                var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
-        }
+  <style>
+    /* ============================================
+       DESIGN TOKENS & CSS VARIABLES
+    ============================================ */
+    :root {
+      --bg-dark: #0d1117;
+      --bg-card: #161b22;
+      --border: rgba(255, 255, 255, 0.08);
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-green: #10b981;
+      --radius-sm: 0.5rem;
+      --radius-md: 0.8rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      /* [FIX 8] Responsive spacing tokens */
+      --space-xs: clamp(0.5rem, 1.5vw, 0.75rem);
+      --space-sm: clamp(0.75rem, 2vw, 1rem);
+      --space-md: clamp(1rem, 3vw, 1.5rem);
+      --space-lg: clamp(1.5rem, 4vw, 2.5rem);
+      --space-xl: clamp(2rem, 6vw, 4rem);
+      --space-2xl: clamp(3rem, 8vw, 6rem);
+      /* [FIX 3] Fluid typography scale */
+      --text-xs: clamp(0.7rem, 1.5vw, 0.8rem);
+      --text-sm: clamp(0.8rem, 1.8vw, 0.95rem);
+      --text-base: clamp(0.9rem, 2vw, 1rem);
+      --text-md: clamp(1rem, 2.2vw, 1.1rem);
+      --text-lg: clamp(1.1rem, 2.5vw, 1.35rem);
+      --text-xl: clamp(1.2rem, 3vw, 1.65rem);
+      --text-2xl: clamp(1.5rem, 4vw, 2.1rem);
+      --text-hero: clamp(2.2rem, 8vw, 4.5rem);
+    }
 
-        .tech-stack-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
+    /* [FIX 9] Prevent horizontal overflow */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .tech-stack-title {
-            font-size: 2.1rem;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin: 0;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .tech-stack-subtitle {
-            margin: 0.35rem 0 0;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: var(--text-base);
+      line-height: 1.6;
+      /* [FIX 9] Prevent horizontal scroll */
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-        .tech-stack-view {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            padding: 0.45rem 0.8rem;
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            background-color: rgba(255, 255, 255, 0.02);
-            transition: all 0.2s ease;
-        }
+    /* [FIX 4] Responsive images globally */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
 
-        .tech-stack-view:hover {
-            border-color: var(--accent);
-            color: white;
-            background-color: var(--accent);
-            transform: translateY(-1px);
-        }
+    /* [FIX 10] Touch targets */
+    a, button {
+      min-height: 44px;
+      min-width: 44px;
+    }
 
-        .tech-stack-view i {
-            font-size: 0.8rem;
-        }
+    /* ============================================
+       LAYOUT HELPERS
+    ============================================ */
+    /* [FIX 2] Fluid container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
 
-        .stack-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
-        }
+    section {
+      padding: var(--space-2xl) var(--space-md);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        .stack-group {
-            margin-bottom: 0;
-            padding: 1rem;
-            border: 1px solid var(--border);
-            border-radius: 0.8rem;
-            background-color: rgba(255, 255, 255, 0.015);
-        }
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    #navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(13, 17, 23, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
 
-        .stack-group.full-width {
-            grid-column: 1 / -1;
-        }
+    .nav-container {
+      /* [FIX 2] Fluid container */
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      /* [FIX 6] Flexbox layout */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
 
-        .stack-group h3 {
-            margin: 0 0 0.8rem;
-            font-size: 1.1rem;
-            line-height: 1.2;
-            letter-spacing: -0.01em;
-            display: flex;
-            align-items: center;
-            gap: 0.55rem;
-        }
+    .logo {
+      font-size: var(--text-lg);
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
 
-        .stack-group h3 i {
-            color: var(--accent);
-            font-size: 0.95rem;
-            width: 1rem;
-            text-align: center;
-        }
+    /* [FIX 7] Desktop nav */
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: var(--space-sm);
+      align-items: center;
+    }
 
-        .stack-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.55rem;
-        }
+    .nav-menu a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: var(--text-sm);
+      font-weight: 500;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s, background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+    }
 
-        .stack-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            border: 1px solid var(--border);
-            border-radius: 0.45rem;
-            padding: 0.45rem 0.7rem;
-            font-size: 0.92rem;
-            color: var(--text-primary);
-            background-color: var(--bg-dark);
-            transition: all 0.2s ease;
-        }
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: var(--text-primary);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
 
-        .stack-chip i {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-        }
+    /* [FIX 7] Hamburger button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      /* [FIX 10] Touch target */
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
 
-        .stack-chip:hover {
-            border-color: var(--accent);
-            transform: translateY(-1px);
-        }
+    .mobile-menu-btn:hover {
+      border-color: var(--accent);
+    }
 
-        .highlighted-project {
-            border: 1px solid rgba(59, 130, 246, 0.55);
-            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
-        }
+    /* [FIX 7] Mobile dropdown menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      padding: var(--space-xs) var(--space-md) var(--space-sm);
+      border-top: 1px solid var(--border);
+      gap: 0.25rem;
+    }
 
-        .highlighted-project .project-category {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-        }
+    .mobile-menu.active {
+      display: flex;
+    }
 
-        .highlight-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.25rem 0.55rem;
-            margin-bottom: 0.7rem;
-            border-radius: 999px;
-            font-size: 0.72rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            border: 1px solid rgba(59, 130, 246, 0.45);
-            color: #bfdbfe;
-            background-color: rgba(37, 99, 235, 0.15);
-            font-weight: 600;
-        }
+    .mobile-menu a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: var(--text-sm);
+      font-weight: 500;
+      padding: 0.65rem 0.75rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s, background 0.2s;
+      /* [FIX 10] Touch target */
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
 
-        @media (max-width: 900px) {
-            .stack-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+    .mobile-menu a:hover {
+      color: var(--text-primary);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
 
-        @media (max-width: 768px) {
-            .tech-stack-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+    /* ============================================
+       HERO SECTION
+    ============================================ */
+    .hero {
+      padding: var(--space-2xl) var(--space-md);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-            .tech-stack-title {
-                font-size: 1.65rem;
-            }
+    .hero-grid {
+      /* [FIX 6] Responsive grid */
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-xl);
+      align-items: center;
+    }
 
-            .stack-group h3 {
-                font-size: 1.02rem;
-            }
-        }
-    </style>
+    .hero-content h1 {
+      /* [FIX 3] Fluid hero title */
+      font-size: var(--text-hero);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-content .role {
+      font-size: var(--text-lg);
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-content p {
+      color: var(--text-secondary);
+      font-size: var(--text-base);
+      max-width: 520px;
+      margin-bottom: var(--space-lg);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      /* [FIX 6] Flex wrap for buttons */
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      /* [FIX 10] Touch target */
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-image {
+      width: clamp(140px, 20vw, 220px);
+      flex-shrink: 0;
+    }
+
+    .hero-image img {
+      width: 100%;
+      border-radius: var(--radius-xl);
+      border: 2px solid var(--border);
+      object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+
+    /* ============================================
+       BUTTONS
+    ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      /* [FIX 10] Touch target */
+      min-height: 44px;
+      border-radius: var(--radius-sm);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================
+       TECH STACK SECTION
+    ============================================ */
+    .tech-stack-wrap {
+      margin-top: var(--space-md);
+      position: relative;
+    }
+
+    .tech-stack-card {
+      background:
+        radial-gradient(circle at 5% 0%, rgba(59, 130, 246, 0.16), transparent 42%),
+        radial-gradient(circle at 95% 100%, rgba(16, 185, 129, 0.12), transparent 35%),
+        var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      /* [FIX 8] Responsive padding */
+      padding: var(--space-md);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .tech-stack-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tech-stack-title {
+      /* [FIX 3] Fluid font size */
+      font-size: var(--text-2xl);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .tech-stack-subtitle {
+      margin: 0.35rem 0 0;
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+    }
+
+    /* [FIX 6] Responsive stack grid */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+
+    .stack-group {
+      padding: var(--space-sm);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background-color: rgba(255, 255, 255, 0.015);
+    }
+
+    .stack-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .stack-group h3 {
+      margin: 0 0 var(--space-sm);
+      /* [FIX 3] Fluid font size */
+      font-size: var(--text-md);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .stack-group h3 i {
+      color: var(--accent);
+      font-size: 0.95rem;
+      width: 1rem;
+      text-align: center;
+    }
+
+    .stack-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .stack-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      /* [FIX 8] Responsive padding */
+      padding: 0.4rem 0.65rem;
+      /* [FIX 3] Fluid font size */
+      font-size: var(--text-xs);
+      color: var(--text-primary);
+      background-color: var(--bg-dark);
+      transition: all 0.2s ease;
+    }
+
+    .stack-chip i {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+    }
+
+    .stack-chip:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================
+       SECTION HEADERS
+    ============================================ */
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .section-label {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      /* [FIX 3] Fluid font size */
+      font-size: var(--text-2xl);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* ============================================
+       PORTFOLIO GRID
+    ============================================ */
+    /* [FIX 6] Responsive grid with auto-fill */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+      gap: var(--space-md);
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    }
+
+    .project-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.03);
+    }
+
+    .project-category {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      background: var(--accent);
+      color: white;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    .project-info {
+      /* [FIX 8] Responsive padding */
+      padding: var(--space-md);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-info h3 {
+      font-size: var(--text-md);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-info p {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: var(--space-sm);
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .project-tag {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.25rem 0.55rem;
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      padding: 0.3rem 0.6rem;
+      border: 1px solid rgba(37, 99, 235, 0.35);
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+      /* [FIX 10] Touch target */
+      min-height: 36px;
+    }
+
+    .project-link:hover {
+      background-color: rgba(37, 99, 235, 0.12);
+    }
+
+    /* Highlighted projects */
+    .highlighted-project {
+      border: 1px solid rgba(59, 130, 246, 0.45);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+    }
+
+    .highlighted-project .project-category {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    }
+
+    .highlight-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.55rem;
+      margin-bottom: 0.6rem;
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: 1px solid rgba(59, 130, 246, 0.45);
+      color: #bfdbfe;
+      background-color: rgba(37, 99, 235, 0.12);
+      font-weight: 600;
+    }
+
+    /* ============================================
+       CONTACT SECTION
+    ============================================ */
+    .contact {
+      text-align: center;
+      padding: var(--space-2xl) var(--space-md);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .contact h2 {
+      font-size: var(--text-2xl);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .contact p {
+      color: var(--text-secondary);
+      font-size: var(--text-base);
+      line-height: 1.7;
+      margin-bottom: var(--space-lg);
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      text-align: center;
+      padding: var(--space-lg) var(--space-md);
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: var(--text-xs);
+    }
+
+    /* ============================================
+       BREAKPOINTS
+    ============================================ */
+
+    /* [FIX 5] Small Desktop: max-width 1024px */
+    @media (max-width: 1024px) {
+      .hero-image {
+        width: clamp(120px, 18vw, 180px);
+      }
+    }
+
+    /* [FIX 5] Tablet: max-width 768px */
+    @media (max-width: 768px) {
+      /* [FIX 7] Show hamburger, hide desktop nav */
+      .nav-menu {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      /* [FIX 6] Stack hero on tablet */
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-image {
+        width: clamp(120px, 35vw, 180px);
+        margin: 0 auto;
+        order: -1;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .tech-stack-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      /* [FIX 6] Collapse stack grid on tablet */
+      .stack-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stack-group.full-width {
+        grid-column: auto;
+      }
+    }
+
+    /* [FIX 5] Mobile: max-width 480px */
+    @media (max-width: 480px) {
+      section {
+        padding: var(--space-xl) var(--space-sm);
+      }
+
+      .hero {
+        padding: var(--space-xl) var(--space-sm);
+      }
+
+      .contact {
+        padding: var(--space-xl) var(--space-sm);
+      }
+
+      /* [FIX 6] Single column portfolio on mobile */
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        width: clamp(100px, 40vw, 160px);
+      }
+
+      .contact-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .contact-buttons .btn {
+        width: 100%;
+      }
+
+      /* [FIX 10] Larger touch targets on mobile */
+      .btn {
+        padding: 0.75rem 1.4rem;
+      }
+    }
+
+    /* [FIX 5] Large Desktop: min-width 1280px */
+    @media (min-width: 1280px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .stack-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      /* Full-width stays full regardless */
+      .stack-group.full-width {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">KL</div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">KL</div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
+      <!-- [FIX 7] Hamburger button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- [FIX 7] Mobile dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <h1>Kent Jocel<br>Lusdoc</h1>
+        <p class="role">Web Developer</p>
+        <p>I build production-ready web applications using TypeScript, React.js, Vue.js, Laravel, and .NET. I
+          focus on clean architecture, maintainable code, and practical delivery for real business needs.</p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get In Touch</a>
+          <a href="#portfolio" class="btn btn-secondary">View Work</a>
         </div>
 
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#home">Home</a>
-            <a href="#features">Features</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+        <div class="social-links">
+          <a href="https://github.com/kikenTheGreat" class="social-link" target="_blank" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/feed/" class="social-link" target="_blank" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kentjocellusdoc@gmail.com&su=Inquiry%20from%20Portfolio"
+            target="_blank" class="social-link" aria-label="Send email">
+            <i class="fas fa-envelope"></i>
+          </a>
         </div>
-    </nav>
+      </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <h1>Kent Jocel<br>Lusdoc</h1>
-                <p class="role">Web Developer</p>
-                <p>I build production-ready web applications using TypeScript, React.js, Vue.js, Laravel, and .NET. I
-                    focus on clean architecture, maintainable code, and practical delivery for real business needs.</p>
+      <!-- [FIX 4] Image uses max-width: 100%; height: auto via global rule -->
+      <div class="hero-image">
+        <img src="Lusdoc_EnhanceImage.png" alt="Kent Jocel Lusdoc">
+      </div>
+    </div>
+  </section>
 
-                <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#portfolio" class="btn btn-secondary">View Work</a>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://github.com/kikenTheGreat" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/feed/" class="social-link" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kentjocellusdoc@gmail.com&su=Inquiry%20from%20Portfolio"
-                        target="_blank" class="social-link" aria-label="Send email to Kent Jocel Lusdoc via Gmail">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-
-
-                </div>
-            </div>
-
-            <div class="hero-image">
-                <img src="Lusdoc_EnhanceImage.png" alt="Kent Jocel Lusdoc">
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features">
-        <div class="tech-stack-wrap">
-            <div class="tech-stack-card">
-                <div class="tech-stack-header">
-                    <div>
-                        <h2 class="tech-stack-title">Tech Stack</h2>
-                        <p class="tech-stack-subtitle">Professional tools and technologies I use to ship production
-                            work.</p>
-                    </div>
-                </div>
-
-                <div class="stack-grid">
-                    <div class="stack-group">
-                        <h3><i class="fas fa-laptop-code"></i> Front End</h3>
-                        <div class="stack-chips">
-                            <span class="stack-chip"><i class="fas fa-check"></i> HTML</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> CSS</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> Tailwind CSS</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> Bootstrap</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> TypeScript</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> React.js</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> Vue.js</span>
-                        </div>
-                    </div>
-
-                    <div class="stack-group">
-                        <h3><i class="fas fa-server"></i> Back End</h3>
-                        <div class="stack-chips">
-                            <span class="stack-chip"><i class="fas fa-check"></i> PHP</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> C# .NET</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> Laravel</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> Node.js (still learning)</span>
-                        </div>
-                    </div>
-
-                    <div class="stack-group">
-                        <h3><i class="fas fa-database"></i> Database</h3>
-                        <div class="stack-chips">
-                            <span class="stack-chip"><i class="fas fa-check"></i> MySQL</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> SQL Server</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> Supabase</span>
-                        </div>
-                    </div>
-
-                    <div class="stack-group full-width">
-                        <h3><i class="fas fa-screwdriver-wrench"></i> Developer Tools</h3>
-                        <div class="stack-chips">
-                            <span class="stack-chip"><i class="fas fa-check"></i> Discord</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> VS Code</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> Jira</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> Git</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> GitHub</span>
-                            <span class="stack-chip"><i class="fas fa-check"></i> Microsoft Teams</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-        <div class="section-header">
-            <p class="section-label">My Work</p>
-            <h2 class="section-title">Portfolio</h2>
+  <!-- Features / Tech Stack Section -->
+  <section id="features">
+    <div class="tech-stack-wrap">
+      <div class="tech-stack-card">
+        <div class="tech-stack-header">
+          <div>
+            <h2 class="tech-stack-title">Tech Stack</h2>
+            <p class="tech-stack-subtitle">Professional tools and technologies I use to ship production work.</p>
+          </div>
         </div>
 
-        <div class="portfolio-grid">
-            <div class="project-card highlighted-project">
-                <div class="project-image">
-                    <img src="solar.png" alt="Solar Power Energy Corporation">
-                    <div class="project-category">Highlighted</div>
-                </div>
-                <div class="project-info">
-                    <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
-                    <h3>Solar Power Energy Corporation</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Corporate Website</span>
-                        <span class="project-tag">Frontend</span>
-                        <span class="project-tag">SEO Ready</span>
-                        <a href="https://solarpower.com.ph/" target="_blank" class="project-link">
-                            <i class="fas fa-up-right-from-square"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
+        <!-- [FIX 6] Responsive grid with breakpoints -->
+        <div class="stack-grid">
+          <div class="stack-group">
+            <h3><i class="fas fa-laptop-code"></i> Front End</h3>
+            <div class="stack-chips">
+              <span class="stack-chip"><i class="fas fa-check"></i> HTML</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> CSS</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> Tailwind CSS</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> Bootstrap</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> TypeScript</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> React.js</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> Vue.js</span>
             </div>
+          </div>
 
-            <div class="project-card highlighted-project">
-                <div class="project-image">
-                    <img src="wcg-dubai.png" alt="World City Real Estate">
-                    <div class="project-category">Highlighted</div>
-                </div>
-                <div class="project-info">
-                    <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
-                    <h3>World City Real Estate</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Real Estate</span>
-                        <span class="project-tag">Business Site</span>
-                        <span class="project-tag">UI/UX</span>
-                        <a href="https://worldcityrealestate.com/" target="_blank" class="project-link">
-                            <i class="fas fa-up-right-from-square"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
+          <div class="stack-group">
+            <h3><i class="fas fa-server"></i> Back End</h3>
+            <div class="stack-chips">
+              <span class="stack-chip"><i class="fas fa-check"></i> PHP</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> C# .NET</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> Laravel</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> Node.js (still learning)</span>
             </div>
+          </div>
 
-            <div class="project-card highlighted-project">
-                <div class="project-image">
-                    <img src="/wcg-ph.png" alt="World City Architect">
-                    <div class="project-category">Highlighted</div>
-                </div>
-                <div class="project-info">
-                    <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
-                    <h3>World City Real Estate Ph</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Real Estate</span>
-                        <span class="project-tag">Brand Website</span>
-                        <span class="project-tag">Promotional</span>
-                          <a href="http://worldcityrealestate.ph/"
-                            target="_blank" class="project-link">
-                            <i class="fas fa-up-right-from-square"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
+          <div class="stack-group">
+            <h3><i class="fas fa-database"></i> Database</h3>
+            <div class="stack-chips">
+              <span class="stack-chip"><i class="fas fa-check"></i> MySQL</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> SQL Server</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> Supabase</span>
             </div>
+          </div>
 
-            <div class="project-card highlighted-project">
-                <div class="project-image">
-                    <img src="/wcg-architect.png" alt="World City Architect">
-                    <div class="project-category">Highlighted</div>
-                </div>
-                <div class="project-info">
-                    <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
-                    <h3>World City Architect</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Architecture</span>
-                        <span class="project-tag">Brand Website</span>
-                        <span class="project-tag">In Progress</span>
-                        <span class="project-link"><i class="fas fa-hourglass-half"></i> Publishing Soon</span>
-                    </div>
-                </div>
+          <div class="stack-group full-width">
+            <h3><i class="fas fa-screwdriver-wrench"></i> Developer Tools</h3>
+            <div class="stack-chips">
+              <span class="stack-chip"><i class="fas fa-check"></i> Discord</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> VS Code</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> Jira</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> Git</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> GitHub</span>
+              <span class="stack-chip"><i class="fas fa-check"></i> Microsoft Teams</span>
             </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="wedding-website.png" alt="Website For Couple Wedding">
-                    <div class="project-category">Highlighted</div>
-                </div>
-                <div class="project-info">
-                    <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
-                    <h3>Website For Couple Wedding</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Landing Page</span>
-                        <span class="project-tag">Animation</span>
-                        <span class="project-tag">Responsive</span>
-                        <a href="https://donna-website-animated-git-main-kents-projects-92421bfa.vercel.app/"
-                            target="_blank" class="project-link">
-                            <i class="fas fa-up-right-from-square"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="twix.png" alt="Twix Project">
-                    <div class="project-category">Desktop</div>
-                </div>
-                <div class="project-info">
-                    <h3>Mini Telegram App(Daily Task)</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Html,CSS</span>
-                        <span class="project-tag">Javascript</span>
-                        <span class="project-tag">PostgreSQL</span>
-                        <br>
-                        <a href="https://mini-telegram-app-v1.vercel.app/" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View Project
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="Library_Capstone.png" alt="Library System">
-                    <div class="project-category">Capstone</div>
-                </div>
-                <div class="project-info">
-                    <h3>Library Management System</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">C# .NET</span>
-                        <span class="project-tag">SQL Server</span>
-                        <span class="project-tag">Google API</span>
-
-                        <a href="https://github.com/kikenTheGreat/Library-Final" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> View Project
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="Game_Application.png" alt="Game">
-                    <div class="project-category">Game Dev</div>
-                </div>
-                <div class="project-info">
-                    <h3>Horror Game Experience</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Unity</span>
-                        <span class="project-tag">Blender</span>
-                        <br>
-
-                        <a href="https://github.com/kikenTheGreat/HorrorGAME" target="_blank" class="project-link">
-                            <br> <i class="fab fa-github"></i> View Project
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="/wcg-consulting.png" alt="Pharmacy">
-                    <div class="project-category">Enterprise</div>
-                </div>
-                <div class="project-info">
-                    <h3>WCG Consulting</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">React</span>
-                        <span class="project-tag">Supabase</span>
-                        <span class="project-tag">Javascript</span>
-
-                        <br>
-                        <a href="" target="_blank" class="project-link">
-                            <i class="fab fa-github"></i> For Publishing
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="CodeFest_Certificate.png" alt="CodeFest">
-                    <div class="project-category">Competition</div>
-                </div>
-                <div class="project-info">
-                    <h3>Mobile Application Platform</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Android Studio</span>
-                        <span class="project-tag">Java</span>
-                        <span class="project-tag">SQLite</span>
-
-                        <a href="https://drive.google.com/file/d/1PHimiTOzNvU48-sCS40NM4t6YwRM1z5e/view" target="_blank"
-                            class="project-link">
-                            <i class="fab fa-github"></i> View Image
-                        </a>
-
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="CodingBee_Certificate.jpg" alt="Coding Bee">
-                    <div class="project-category">Achievement</div>
-                </div>
-                <div class="project-info">
-                    <h3>OOP Concept Mastery</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Java</span>
-                        <span class="project-tag">C#</span>
-                        <span class="project-tag">DSA</span>
-
-
-                        <a href="https://drive.google.com/file/d/1IUnkn7VIOyRHp4J603EZIyfGv1otWM0D/view" target="_blank"
-                            class="project-link">
-                            <br> <i class="fab fa-github"></i> View Certification
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-
-
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
+  <!-- Portfolio Section -->
+  <section id="portfolio">
+    <div class="section-header">
+      <p class="section-label">My Work</p>
+      <h2 class="section-title">Portfolio</h2>
+    </div>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <h2>Let's Work Together</h2>
-        <p>I am open to discussing new web projects, team collaborations, and long-term product work. Reach out and let
-            us build something valuable.</p>
-        <div class="contact-buttons">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kentjocellusdoc@gmail.com&su=Inquiry%20from%20Portfolio"
-                target="_blank" class="btn btn-primary">
-                Email Me
+    <!-- [FIX 6] auto-fill responsive grid -->
+    <div class="portfolio-grid">
+
+      <!-- Solar Power Energy Corporation -->
+      <div class="project-card highlighted-project">
+        <div class="project-image">
+          <img src="solar.png" alt="Solar Power Energy Corporation">
+          <div class="project-category">Highlighted</div>
+        </div>
+        <div class="project-info">
+          <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+          <h3>Solar Power Energy Corporation</h3>
+          <p>Corporate website for a Philippine solar energy company — showcasing services, solutions, and clean energy advocacy.</p>
+          <div class="project-tags">
+            <span class="project-tag">PHP</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">MySQL</span>
+            <span class="project-tag">HTML/CSS</span>
+            <span class="project-tag">Bootstrap/Tailwind</span>
+            <a href="https://solarpower.com.ph/" target="_blank" class="project-link">
+              <i class="fas fa-up-right-from-square"></i> Visit Website
             </a>
-
-            <a href="Lusdoc_KentJocel_Internship-resume (2).pdf" download class="btn btn-secondary">Download Resume</a>
-
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Kent Jocel Lusdoc. All rights reserved.</p>
-    </footer>
+      <!-- World City Real Estate Dubai -->
+      <div class="project-card highlighted-project">
+        <div class="project-image">
+          <img src="wcg-dubai.png" alt="World City Real Estate">
+          <div class="project-category">Highlighted</div>
+        </div>
+        <div class="project-info">
+          <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+          <h3>World City Real Estate</h3>
+          <p>Real estate platform for Dubai property listings — featuring dynamic listings, inquiry forms, and a modern UI for international buyers.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Vite</span>
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">Supabase</span>
+            <span class="project-tag">Tailwind</span>
+            <a href="https://worldcityrealestate.com/" target="_blank" class="project-link">
+              <i class="fas fa-up-right-from-square"></i> Visit Website
+            </a>
+          </div>
+        </div>
+      </div>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const themeIcon = document.getElementById('themeIcon');
-        const themeAnnouncer = document.getElementById('themeAnnouncer');
-        const themeToggleBtn = document.getElementById('themeToggleBtn');
+      <!-- World City Real Estate Ph -->
+      <div class="project-card highlighted-project">
+        <div class="project-image">
+          <img src="wcg-ph.png" alt="World City Real Estate Ph">
+          <div class="project-category">Highlighted</div>
+        </div>
+        <div class="project-info">
+          <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+          <h3>World City Real Estate Ph</h3>
+          <p>Philippine counterpart of the World City brand — a promotional real estate site targeting local buyers with curated property showcases.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Vite</span>
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">Supabase</span>
+            <span class="project-tag">Tailwind</span>
+            <a href="http://worldcityrealestate.ph/" target="_blank" class="project-link">
+              <i class="fas fa-up-right-from-square"></i> Visit Website
+            </a>
+          </div>
+        </div>
+      </div>
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
+      <!-- World City Architect -->
+      <div class="project-card highlighted-project">
+        <div class="project-image">
+          <img src="wcg-architect.png" alt="World City Architect">
+          <div class="project-category">Highlighted</div>
+        </div>
+        <div class="project-info">
+          <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+          <h3>World City Architect</h3>
+          <p>Architecture consulting brand site promoting services for commercial, industrial, and infrastructure projects — built to attract business clients.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Vite</span>
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">Supabase</span>
+            <span class="project-tag">Tailwind</span>
+            <span class="project-link"><i class="fas fa-hourglass-half"></i> Publishing Soon</span>
+          </div>
+        </div>
+      </div>
 
-        if (themeToggleBtn) {
-            themeToggleBtn.addEventListener('click', () => {
-                const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-                setTheme(isLight ? 'dark' : 'light');
-            });
+      <!-- Wedding Website -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="wedding-website.png" alt="Website For Couple Wedding">
+          <div class="project-category">Highlighted</div>
+        </div>
+        <div class="project-info">
+          <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+          <h3>Website For Couple Wedding</h3>
+          <p>An animated wedding invitation website — a personalized digital experience for guests with event details, RSVP, and a romantic visual theme.</p>
+          <div class="project-tags">
+            <span class="project-tag">HTML/CSS</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">PHP</span>
+            <span class="project-tag">MySQL</span>
+            <a href="https://donna-website-animated-git-main-kents-projects-92421bfa.vercel.app/"
+              target="_blank" class="project-link">
+              <i class="fas fa-up-right-from-square"></i> Visit Website
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini Telegram App -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="twix.png" alt="Twix Project">
+          <div class="project-category">Desktop</div>
+        </div>
+        <div class="project-info">
+          <h3>Mini Telegram App (Daily Task)</h3>
+          <p>A lightweight daily task manager built as a Telegram mini app — lets users add, track, and complete tasks directly inside the chat interface.</p>
+          <div class="project-tags">
+            <span class="project-tag">HTML/CSS</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">PostgreSQL</span>
+            <a href="https://mini-telegram-app-v1.vercel.app/" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View Project
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Library Management System -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="Library_Capstone.png" alt="Library System">
+          <div class="project-category">Capstone</div>
+        </div>
+        <div class="project-info">
+          <h3>Library Management System</h3>
+          <p>A capstone desktop application for managing book records, borrowing transactions, and student accounts — integrated with Google API for extended functionality.</p>
+          <div class="project-tags">
+            <span class="project-tag">C# .NET</span>
+            <span class="project-tag">SQL Server</span>
+            <span class="project-tag">Google API</span>
+            <a href="https://github.com/kikenTheGreat/Library-Final" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View Project
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horror Game -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="Game_Application.png" alt="Game">
+          <div class="project-category">Game Dev</div>
+        </div>
+        <div class="project-info">
+          <h3>Horror Game Experience</h3>
+          <p>A 3D horror game built in Unity with custom assets modeled in Blender — featuring atmospheric environments, jump scares, and immersive gameplay mechanics.</p>
+          <div class="project-tags">
+            <span class="project-tag">Unity</span>
+            <span class="project-tag">Blender</span>
+            <a href="https://github.com/kikenTheGreat/HorrorGAME" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View Project
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WCG Consulting -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="wcg-consulting.png" alt="WCG Consulting">
+          <div class="project-category">Enterprise</div>
+        </div>
+        <div class="project-info">
+          <h3>WCG Consulting</h3>
+          <p>An enterprise consulting platform for World City Group — managing client inquiries, service offerings, and internal operations built with React and Supabase.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Supabase</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-link"><i class="fab fa-github"></i> For Publishing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Application Platform -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="CodeFest_Certificate.png" alt="CodeFest">
+          <div class="project-category">Competition</div>
+        </div>
+        <div class="project-info">
+          <h3>Mobile Application Platform</h3>
+          <div class="project-tags">
+            <span class="project-tag">Android Studio</span>
+            <span class="project-tag">Java</span>
+            <span class="project-tag">SQLite</span>
+            <a href="https://drive.google.com/file/d/1PHimiTOzNvU48-sCS40NM4t6YwRM1z5e/view" target="_blank"
+              class="project-link">
+              <i class="fas fa-image"></i> View Image
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- OOP Concept Mastery -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="CodingBee_Certificate.jpg" alt="Coding Bee">
+          <div class="project-category">Achievement</div>
+        </div>
+        <div class="project-info">
+          <h3>OOP Concept Mastery</h3>
+          <div class="project-tags">
+            <span class="project-tag">Java</span>
+            <span class="project-tag">C#</span>
+            <span class="project-tag">DSA</span>
+            <a href="https://drive.google.com/file/d/1IUnkn7VIOyRHp4J603EZIyfGv1otWM0D/view" target="_blank"
+              class="project-link">
+              <i class="fas fa-certificate"></i> View Certification
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2>Let's Work Together</h2>
+    <p>I am open to discussing new web projects, team collaborations, and long-term product work. Reach out and let us build something valuable.</p>
+    <div class="contact-buttons">
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kentjocellusdoc@gmail.com&su=Inquiry%20from%20Portfolio"
+        target="_blank" class="btn btn-primary">
+        Email Me
+      </a>
+      <a href="/lusdoc-kent-jocel-resume.pdf" download class="btn btn-secondary">Download Resume</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Kent Jocel Lusdoc. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      const icon = mobileMenuBtn.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    // Smooth scrolling + close mobile menu on link click
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          mobileMenu.classList.remove('active');
+          const icon = mobileMenuBtn.querySelector('i');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
         }
+      });
+    });
 
+    // Active navigation on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-menu a');
 
-
-
-
-        function setTheme(theme) {
-            if (theme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                if (themeIcon) {
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                }
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-                if (themeIcon) {
-                    themeIcon.classList.remove('fa-sun');
-                    themeIcon.classList.add('fa-moon');
-                }
-            }
-            try { localStorage.setItem('theme', theme); } catch (e) { }
-            if (themeAnnouncer) {
-                const label = theme === 'light' ? 'Light theme enabled' : 'Dark theme enabled';
-                themeAnnouncer.textContent = label;
-            }
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (window.pageYOffset >= sectionTop - 200) {
+          current = section.getAttribute('id');
         }
+      });
 
-        // Initialize theme from localStorage or system preference
-        (function () {
-            let stored = null;
-            try { stored = localStorage.getItem('theme'); } catch (e) { stored = null; }
-            if (stored === 'light' || stored === 'dark') {
-                setTheme(stored === 'light' ? 'light' : 'dark');
-            } else {
-                const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                setTheme(prefersLight ? 'light' : 'dark');
-            }
-        })();
-
-
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    mobileMenu.classList.remove('active');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
-        });
-
-        // Active navigation
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-menu a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
