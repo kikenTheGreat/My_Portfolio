@@ -44,7 +44,9 @@
     }
 
     /* [FIX 9] Prevent horizontal overflow */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -73,7 +75,8 @@
     }
 
     /* [FIX 10] Touch targets */
-    a, button {
+    a,
+    button {
       min-height: 44px;
       min-width: 44px;
     }
@@ -623,7 +626,7 @@
     ============================================ */
     .contact {
       text-align: center;
-      
+
       max-width: 680px;
       margin: 0 auto;
     }
@@ -673,6 +676,7 @@
 
     /* [FIX 5] Tablet: max-width 768px */
     @media (max-width: 768px) {
+
       /* [FIX 7] Show hamburger, hide desktop nav */
       .nav-menu {
         display: none;
@@ -920,7 +924,8 @@
         <div class="project-info">
           <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
           <h3>Solar Power Energy Corporation</h3>
-          <p>Corporate website for a Philippine solar energy company — showcasing services, solutions, and clean energy advocacy.</p>
+          <p>Corporate website for a Philippine solar energy company — showcasing services, solutions, and clean energy
+            advocacy.</p>
           <div class="project-tags">
             <span class="project-tag">PHP</span>
             <span class="project-tag">JavaScript</span>
@@ -943,7 +948,8 @@
         <div class="project-info">
           <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
           <h3>World City Real Estate Dubai</h3>
-          <p>Real estate platform for Dubai property listings — featuring dynamic listings, inquiry forms, and a modern UI for international buyers.</p>
+          <p>Real estate platform for Dubai property listings — featuring dynamic listings, inquiry forms, and a modern
+            UI for international buyers.</p>
           <div class="project-tags">
             <span class="project-tag">React</span>
             <span class="project-tag">Vite</span>
@@ -966,7 +972,8 @@
         <div class="project-info">
           <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
           <h3>World City Real Estate Ph</h3>
-          <p>Philippine counterpart of the World City brand — a promotional real estate site targeting local buyers with curated property showcases.</p>
+          <p>Philippine counterpart of the World City brand — a promotional real estate site targeting local buyers with
+            curated property showcases.</p>
           <div class="project-tags">
             <span class="project-tag">React</span>
             <span class="project-tag">Vite</span>
@@ -989,14 +996,15 @@
         <div class="project-info">
           <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
           <h3>World City Architect</h3>
-          <p>Architecture consulting brand site promoting services for commercial, industrial, and infrastructure projects — built to attract business clients.</p>
+          <p>Architecture consulting brand site promoting services for commercial, industrial, and infrastructure
+            projects — built to attract business clients.</p>
           <div class="project-tags">
             <span class="project-tag">React</span>
             <span class="project-tag">Vite</span>
             <span class="project-tag">TypeScript</span>
             <span class="project-tag">Supabase</span>
             <span class="project-tag">Tailwind</span>
-             <a href="https://worldcityarchitects.com/" target="_blank" class="project-link">
+            <a href="https://worldcityarchitects.com/" target="_blank" class="project-link">
               <i class="fas fa-up-right-from-square"></i> Visit Website
             </a>
           </div>
@@ -1012,14 +1020,38 @@
         <div class="project-info">
           <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
           <h3>Website For Couple Wedding</h3>
-          <p>An animated wedding invitation website — a personalized digital experience for guests with event details, RSVP, and a romantic visual theme.</p>
+          <p>An animated wedding invitation website — a personalized digital experience for guests with event details,
+            RSVP, and a romantic visual theme.</p>
           <div class="project-tags">
             <span class="project-tag">HTML/CSS</span>
             <span class="project-tag">JavaScript</span>
             <span class="project-tag">PHP</span>
             <span class="project-tag">MySQL</span>
-            <a href="https://marbs-and-donnas-wedding-invitation.vercel.app/"
-              target="_blank" class="project-link">
+            <a href="https://marbs-and-donnas-wedding-invitation.vercel.app/" target="_blank" class="project-link">
+              <i class="fas fa-up-right-from-square"></i> Visit Website
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rent Car -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="rentcar.png" alt="Website For Couple Wedding">
+          <div class="project-category">Highlighted</div>
+        </div>
+        <div class="project-info">
+          <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+          <h3>Website For Car Renting Business</h3>
+          <p>A car rental website — a fully functional platform for browsing available vehicles, checking details, and
+            booking rentals online with a smooth and user-friendly experience.</p>
+          <div class="project-tags">
+            <span class="project-tag">HTML/CSS</span>
+            <span class="project-tag">Bootstrap</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">PHP</span>
+            <span class="project-tag">MySQL</span>
+            <a href="https://marbs-and-donnas-wedding-invitation.vercel.app/" target="_blank" class="project-link">
               <i class="fas fa-up-right-from-square"></i> Visit Website
             </a>
           </div>
@@ -1034,7 +1066,8 @@
         </div>
         <div class="project-info">
           <h3>Mini Telegram App (Daily Task)</h3>
-          <p>A lightweight daily task manager built as a Telegram mini app — lets users add, track, and complete tasks directly inside the chat interface.</p>
+          <p>A lightweight daily task manager built as a Telegram mini app — lets users add, track, and complete tasks
+            directly inside the chat interface.</p>
           <div class="project-tags">
             <span class="project-tag">HTML/CSS</span>
             <span class="project-tag">JavaScript</span>
@@ -1054,7 +1087,8 @@
         </div>
         <div class="project-info">
           <h3>Library Management System</h3>
-          <p>A capstone desktop application for managing book records, borrowing transactions, and student accounts — integrated with Google API for extended functionality.</p>
+          <p>A capstone desktop application for managing book records, borrowing transactions, and student accounts —
+            integrated with Google API for extended functionality.</p>
           <div class="project-tags">
             <span class="project-tag">C# .NET</span>
             <span class="project-tag">SQL Server</span>
@@ -1074,7 +1108,8 @@
         </div>
         <div class="project-info">
           <h3>Horror Game Experience</h3>
-          <p>A 3D horror game built in Unity with custom assets modeled in Blender — featuring atmospheric environments, jump scares, and immersive gameplay mechanics.</p>
+          <p>A 3D horror game built in Unity with custom assets modeled in Blender — featuring atmospheric environments,
+            jump scares, and immersive gameplay mechanics.</p>
           <div class="project-tags">
             <span class="project-tag">Unity</span>
             <span class="project-tag">Blender</span>
@@ -1093,7 +1128,8 @@
         </div>
         <div class="project-info">
           <h3>WCG Consulting</h3>
-          <p>An enterprise consulting platform for World City Group — managing client inquiries, service offerings, and internal operations built with React and Supabase.</p>
+          <p>An enterprise consulting platform for World City Group — managing client inquiries, service offerings, and
+            internal operations built with React and Supabase.</p>
           <div class="project-tags">
             <span class="project-tag">React</span>
             <span class="project-tag">Supabase</span>
@@ -1149,7 +1185,8 @@
   <!-- Contact Section -->
   <section class="contact" id="contact">
     <h2>Let's Work Together</h2>
-    <p>I am open to discussing new web projects, team collaborations, and long-term product work. Reach out and let us build something valuable.</p>
+    <p>I am open to discussing new web projects, team collaborations, and long-term product work. Reach out and let us
+      build something valuable.</p>
     <div class="contact-buttons">
       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kentjocellusdoc@gmail.com&su=Inquiry%20from%20Portfolio"
         target="_blank" class="btn btn-primary">
