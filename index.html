@@ -43,6 +43,268 @@
       --text-hero: clamp(2.2rem, 8vw, 4.5rem);
     }
 
+    /* ============================================
+       LIGHT MODE — EDITORIAL AESTHETIC
+    ============================================ */
+
+    body.light-mode {
+      --bg-dark: #ffffff;
+      --bg-card: #ffffff;
+      --border: rgba(0, 0, 0, 0.10);
+      --text-primary: #141210;
+      --text-secondary: #555555;
+      --accent: #1a1a1a;
+      --accent-hover: #333333;
+      --accent-green: #059669;
+    }
+
+    /* Navbar */
+    body.light-mode #navbar {
+      background-color: rgba(255, 255, 255, 0.93);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    }
+
+    /* Logo stays accent charcoal */
+    body.light-mode .logo {
+      color: var(--accent);
+    }
+
+    /* Nav links */
+    body.light-mode .nav-menu a:hover,
+    body.light-mode .nav-menu a.active {
+      background-color: rgba(0, 0, 0, 0.06);
+      color: var(--text-primary);
+    }
+
+    body.light-mode .mobile-menu {
+      background-color: rgba(255, 255, 255, 0.98);
+    }
+
+    body.light-mode .mobile-menu a:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      color: var(--text-primary);
+    }
+
+    /* Role label: charcoal, no blue */
+    body.light-mode .hero-content .role {
+      color: var(--text-secondary);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: var(--text-sm);
+      border-left: 2px solid var(--accent);
+      padding-left: 0.65rem;
+    }
+
+    /* Section label */
+    body.light-mode .section-label {
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+    }
+
+    /* Tech stack card — linen-style, no color gradients */
+    body.light-mode .tech-stack-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    body.light-mode .stack-group h3 i {
+      color: var(--text-secondary);
+    }
+
+    body.light-mode .stack-chip {
+      background-color: #eeebe4;
+      border-color: rgba(30, 20, 10, 0.14);
+      color: var(--text-primary);
+    }
+
+    body.light-mode .stack-chip:hover {
+      border-color: var(--accent);
+      background-color: #e5e0d6;
+    }
+
+    body.light-mode .stack-chip i {
+      color: var(--text-secondary);
+    }
+
+    body.light-mode .stack-group {
+      background-color: rgba(0,0,0,0.02);
+      border-color: rgba(30, 20, 10, 0.09);
+    }
+
+    /* Project cards */
+    body.light-mode .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    body.light-mode .project-card:hover {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.11);
+    }
+
+    body.light-mode .project-tag {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.10);
+      color: var(--text-secondary);
+    }
+
+    body.light-mode .project-category {
+      background: var(--accent);
+    }
+
+    body.light-mode .project-link {
+      color: var(--accent);
+      border-color: rgba(30, 20, 10, 0.25);
+    }
+
+    body.light-mode .project-link:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+    }
+
+    body.light-mode .highlighted-project {
+      border-color: rgba(30, 20, 10, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    body.light-mode .highlighted-project .project-category {
+      background: var(--accent);
+    }
+
+    body.light-mode .highlight-pill {
+      background-color: rgba(0, 0, 0, 0.06);
+      color: var(--text-secondary);
+      border-color: rgba(0, 0, 0, 0.14);
+    }
+
+    /* Buttons */
+    body.light-mode .btn-primary {
+      background-color: var(--accent);
+      color: #fdfcfa;
+    }
+
+    body.light-mode .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    body.light-mode .btn-secondary {
+      color: var(--text-primary);
+      border-color: rgba(30, 20, 10, 0.25);
+    }
+
+    body.light-mode .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Social links */
+    body.light-mode .social-link {
+      border-color: rgba(30, 20, 10, 0.18);
+      color: var(--text-secondary);
+    }
+
+    body.light-mode .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Hero image border */
+    body.light-mode .hero-image img {
+      border-color: rgba(30, 20, 10, 0.14);
+      filter: grayscale(12%) contrast(1.04);
+    }
+
+    /* Footer */
+    body.light-mode footer {
+      border-top-color: rgba(30, 20, 10, 0.10);
+      color: var(--text-secondary);
+    }
+
+    /* ============================================
+       THEME TOGGLE BUTTON
+    ============================================ */
+    .theme-toggle-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 140px;
+      height: 44px;
+      border-radius: 99px;
+      background-color: #000000;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      transition: background-color 0.3s ease;
+      font-family: inherit;
+      flex-shrink: 0;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .theme-toggle-btn .toggle-text {
+      position: absolute;
+      width: 100%;
+      text-align: right;
+      padding-left: 48px;
+      padding-right: 16px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      z-index: 1;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      left: 0;
+    }
+
+    .theme-toggle-btn .toggle-knob {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background-color: #ffffff;
+      color: #000000;
+      border-radius: 50%;
+      z-index: 2;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .theme-toggle-btn .theme-icon {
+      font-size: 1rem;
+    }
+
+    /* Light Mode overrides */
+    body.light-mode .theme-toggle-btn {
+      background-color: #e5e5e5;
+      color: #000000;
+    }
+
+    body.light-mode .theme-toggle-btn .toggle-text {
+      text-align: left;
+      padding-left: 16px;
+      padding-right: 0;
+    }
+
+    body.light-mode .theme-toggle-btn .toggle-knob {
+      transform: translateX(96px); /* 140 - 8 - 36 = 96 */
+    }
+
+    /* Smooth global transition when switching theme */
+    body,
+    #navbar,
+    .tech-stack-card,
+    .project-card,
+    .stack-chip,
+    .stack-group,
+    footer {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
     /* [FIX 9] Prevent horizontal overflow */
     *,
     *::before,
@@ -762,6 +1024,19 @@
       .btn {
         padding: 0.75rem 1.4rem;
       }
+
+      /* Shrink theme toggle to icon-only on small screens */
+      .theme-toggle-btn {
+        width: 44px;
+      }
+
+      .theme-toggle-btn .toggle-text {
+        display: none;
+      }
+
+      body.light-mode .theme-toggle-btn .toggle-knob {
+        transform: translateX(0);
+      }
     }
 
     /* [FIX 5] Large Desktop: min-width 1280px */
@@ -794,10 +1069,20 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
 
-      <!-- [FIX 7] Hamburger button -->
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-shrink:0;flex-wrap:nowrap;">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+          <div class="toggle-knob">
+            <i class="fas fa-moon theme-icon" id="themeIcon"></i>
+          </div>
+          <span class="toggle-text" id="themeLabel">NIGHT MODE</span>
+        </button>
+
+        <!-- [FIX 7] Hamburger button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
     </div>
 
     <!-- [FIX 7] Mobile dropdown menu -->
@@ -1202,7 +1487,37 @@
   </footer>
 
   <script>
-    // Mobile menu toggle
+    // ── Theme Toggle ──────────────────────────────────────────
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon      = document.getElementById('themeIcon');
+    const themeLabel     = document.getElementById('themeLabel');
+
+    function applyTheme(mode) {
+      if (mode === 'light') {
+        document.body.classList.add('light-mode');
+        themeIcon.className  = 'fas fa-sun theme-icon';
+        themeLabel.textContent = 'DAY MODE';
+        themeToggleBtn.setAttribute('aria-label', 'Switch to dark mode');
+      } else {
+        document.body.classList.remove('light-mode');
+        themeIcon.className  = 'fas fa-moon theme-icon';
+        themeLabel.textContent = 'NIGHT MODE';
+        themeToggleBtn.setAttribute('aria-label', 'Switch to light mode');
+      }
+    }
+
+    // Load saved preference (default: dark)
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+    applyTheme(savedTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+      const isLight = document.body.classList.contains('light-mode');
+      const next    = isLight ? 'dark' : 'light';
+      applyTheme(next);
+      localStorage.setItem('portfolio-theme', next);
+    });
+
+    // ── Mobile menu toggle ────────────────────────────────────
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
 
