@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kent Jocel Lusdoc - Web Developer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <style>
     /* ============================================
@@ -1055,6 +1056,74 @@
         grid-column: 1 / -1;
       }
     }
+
+    /* ============================================
+       MODAL & CAROUSEL (DERM AI)
+    ============================================ */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      width: 100%;
+      max-width: 1000px;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 10000;
+    }
+    .derm-swiper {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+    .derm-swiper .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 280px;
+      height: 550px;
+      background-color: #fff;
+      padding: 10px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+      border-radius: 8px;
+    }
+    .derm-swiper .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+    @media (max-width: 480px) {
+      .derm-swiper .swiper-slide {
+        width: 220px;
+        height: 450px;
+      }
+    }
   </style>
 </head>
 
@@ -1413,7 +1482,6 @@
           <div class="project-category">AI App</div>
         </div>
         <div class="project-info">
-          <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
           <h3>DERM AI</h3>
           <p>Derm AI — AI-powered skin analysis app, letting users photograph skin conditions and receive instant
             diagnostic suggestions — built to make dermatological insight accessible to everyone.</p>
@@ -1425,6 +1493,9 @@
             <span class="project-tag">ML Model (Tensor Flow)</span>
             <span class="project-tag">Supabase</span>
             <span class="project-tag">GradCAM</span>
+            <button onclick="openDermCarousel()" class="project-link" style="background:none; cursor:pointer;">
+              <i class="fas fa-image"></i> View Image
+            </button>
           </div>
         </div>
       </div>
@@ -1587,6 +1658,55 @@
         }
       });
     });
+  </script>
+
+  <!-- DERM AI Carousel Modal -->
+  <div id="dermCarouselModal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeDermCarousel()"><i class="fas fa-times"></i></button>
+      <!-- Swiper -->
+      <div class="swiper derm-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="derm_pic/signin.jpg" alt="Sign In"></div>
+          <div class="swiper-slide"><img src="derm_pic/signup.jpg" alt="Sign Up"></div>
+          <div class="swiper-slide"><img src="derm_pic/forgotpass.jpg" alt="Forgot Password"></div>
+          <div class="swiper-slide"><img src="derm_pic/healthy_skin.png" alt="Healthy Skin"></div>
+          <div class="swiper-slide"><img src="derm_pic/vascular_lesion.png" alt="Vascular Lesion"></div>
+          <div class="swiper-slide"><img src="derm_pic/chat_history.png" alt="Chat History"></div>
+          <div class="swiper-slide"><img src="derm_pic/export_pdf.png" alt="Export PDF"></div>
+          <div class="swiper-slide"><img src="derm_pic/archived.png" alt="Archived"></div>
+          <div class="swiper-slide"><img src="derm_pic/help_support.png" alt="Help & Support"></div>
+          <div class="swiper-slide"><img src="derm_pic/settings.png" alt="Settings"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    let dermSwiper;
+    function openDermCarousel() {
+      document.getElementById('dermCarouselModal').classList.add('active');
+      if (!dermSwiper) {
+        dermSwiper = new Swiper('.derm-swiper', {
+          effect: 'coverflow',
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: 'auto',
+          initialSlide: 0,
+          coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }
+        });
+      }
+    }
+    function closeDermCarousel() {
+      document.getElementById('dermCarouselModal').classList.remove('active');
+    }
   </script>
 </body>
 
