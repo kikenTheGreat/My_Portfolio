@@ -1194,6 +1194,46 @@
         height: 200px;
       }
     }
+
+    /* ── Show More / Less ── */
+    #more-projects {
+      display: contents;
+    }
+    #more-projects.hidden > * {
+      display: none;
+    }
+    .show-more-wrapper {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .btn-show-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2.25rem;
+      border: 2px solid var(--accent, #4f8ef7);
+      border-radius: 50px;
+      background: transparent;
+      color: var(--accent, #4f8ef7);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, transform 0.2s;
+    }
+    .btn-show-more:hover {
+      background: var(--accent, #4f8ef7);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .btn-show-more i {
+      transition: transform 0.3s;
+    }
+    .btn-show-more.expanded i {
+      transform: rotate(180deg);
+    }
   </style>
 </head>
 
@@ -1493,6 +1533,17 @@
         </div>
       </div>
 
+      <!-- Show More Button -->
+      <div class="show-more-wrapper" id="showMoreWrapper">
+        <button class="btn-show-more" id="showMoreBtn" onclick="toggleMoreProjects()">
+          <span>Show More</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+
+      <!-- Hidden projects -->
+      <div id="more-projects" class="hidden">
+
       <!-- Mini Telegram App -->
       <div class="project-card">
         <div class="project-image">
@@ -1699,6 +1750,16 @@
         </div>
       </div>
 
+      <!-- Show Less Button (inside expanded section) -->
+      <div class="show-more-wrapper" id="showLessWrapper">
+        <button class="btn-show-more expanded" onclick="collapseMoreProjects()">
+          <span>Show Less</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+
+      </div><!-- /#more-projects -->
+
     </div>
   </section>
 
@@ -1777,6 +1838,21 @@
         }
       });
     });
+
+    // ── Show More / Less ──────────────────────────────────────
+    function toggleMoreProjects() {
+      const container = document.getElementById('more-projects');
+      const topWrapper = document.getElementById('showMoreWrapper');
+      container.classList.remove('hidden');
+      topWrapper.style.display = 'none';
+    }
+    function collapseMoreProjects() {
+      const container = document.getElementById('more-projects');
+      const topWrapper = document.getElementById('showMoreWrapper');
+      container.classList.add('hidden');
+      topWrapper.style.display = 'flex';
+      document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
     // Active navigation on scroll
     const sections = document.querySelectorAll('section');
