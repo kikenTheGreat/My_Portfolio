@@ -1118,6 +1118,16 @@
       object-fit: contain;
       border-radius: 4px;
     }
+    .derm-swiper .swiper-slide {
+      cursor: pointer;
+    }
+    .derm-swiper .swiper-slide-shadow,
+    .derm-swiper .swiper-slide-shadow-left,
+    .derm-swiper .swiper-slide-shadow-right,
+    .derm-swiper .swiper-slide-shadow-top,
+    .derm-swiper .swiper-slide-shadow-bottom {
+      pointer-events: none !important;
+    }
     @media (max-width: 480px) {
       .derm-swiper .swiper-slide {
         width: 220px;
@@ -1678,6 +1688,9 @@
           <div class="swiper-slide"><img src="derm_pic/help_support.png" alt="Help & Support"></div>
           <div class="swiper-slide"><img src="derm_pic/settings.png" alt="Settings"></div>
         </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev" style="color: white;"></div>
+        <div class="swiper-button-next" style="color: white;"></div>
       </div>
     </div>
   </div>
@@ -1697,7 +1710,18 @@
           keyboard: {
             enabled: true,
           },
+          preventClicks: false,
+          preventClicksPropagation: false,
+          watchSlidesProgress: true,
           slideToClickedSlide: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
           coverflowEffect: {
             rotate: 50,
             stretch: 0,
