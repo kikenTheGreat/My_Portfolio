@@ -1199,15 +1199,18 @@
     #more-projects {
       display: contents;
     }
-    #more-projects.hidden > * {
+
+    #more-projects.hidden>* {
       display: none;
     }
+
     .show-more-wrapper {
       grid-column: 1 / -1;
       display: flex;
       justify-content: center;
       margin-top: 1rem;
     }
+
     .btn-show-more {
       display: inline-flex;
       align-items: center;
@@ -1223,16 +1226,57 @@
       cursor: pointer;
       transition: background 0.25s, color 0.25s, transform 0.2s;
     }
+
     .btn-show-more:hover {
       background: var(--accent, #4f8ef7);
       color: #fff;
       transform: translateY(-2px);
     }
+
     .btn-show-more i {
       transition: transform 0.3s;
     }
+
     .btn-show-more.expanded i {
       transform: rotate(180deg);
+    }
+
+    /* ── Portfolio Filter Bar ── */
+    .portfolio-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      padding: 0.55rem 1.4rem;
+      border-radius: 50px;
+      border: 2px solid transparent;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-secondary, #a0aec0);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.22s, color 0.22s, border-color 0.22s, transform 0.18s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent, #4f8ef7);
+      color: var(--accent, #4f8ef7);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: var(--accent, #4f8ef7);
+      border-color: var(--accent, #4f8ef7);
+      color: #fff;
+    }
+
+    .project-card.filter-hidden {
+      display: none !important;
     }
   </style>
 </head>
@@ -1387,11 +1431,21 @@
       <h2 class="section-title">Portfolio</h2>
     </div>
 
+    <!-- Filter Bar -->
+    <div class="portfolio-filters">
+      <button class="filter-btn active" data-filter="all" onclick="filterProjects('all', this)">All</button>
+      <button class="filter-btn" data-filter="client" onclick="filterProjects('client', this)">Corporate Works</button>
+      <button class="filter-btn" data-filter="personal" onclick="filterProjects('personal', this)">Freelance
+        Projects</button>
+      <button class="filter-btn" data-filter="achievement"
+        onclick="filterProjects('achievement', this)">Achievements</button>
+    </div>
+
     <!-- [FIX 6] auto-fill responsive grid -->
     <div class="portfolio-grid">
 
       <!-- Solar Power Energy Corporation -->
-      <div class="project-card highlighted-project">
+      <div class="project-card highlighted-project" data-category="client">
         <div class="project-image">
           <img src="solar.webp" alt="Solar Power Energy Corporation">
           <div class="project-category">Highlighted</div>
@@ -1415,7 +1469,7 @@
       </div>
 
       <!-- World City Real Estate Dubai -->
-      <div class="project-card highlighted-project">
+      <div class="project-card highlighted-project" data-category="client">
         <div class="project-image">
           <img src="wcg-dubai.webp" alt="World City Real Estate">
           <div class="project-category">Highlighted</div>
@@ -1439,7 +1493,7 @@
       </div>
 
       <!-- World City Real Estate Ph -->
-      <div class="project-card highlighted-project">
+      <div class="project-card highlighted-project" data-category="client">
         <div class="project-image">
           <img src="wcg-ph.webp" alt="World City Real Estate Ph">
           <div class="project-category">Highlighted</div>
@@ -1463,7 +1517,7 @@
       </div>
 
       <!-- World City Architect -->
-      <div class="project-card highlighted-project">
+      <div class="project-card highlighted-project" data-category="client">
         <div class="project-image">
           <img src="wcg-architect.webp" alt="World City Architect">
           <div class="project-category">Highlighted</div>
@@ -1487,7 +1541,7 @@
       </div>
 
       <!-- Wedding Website -->
-      <div class="project-card highlighted-project">
+      <div class="project-card highlighted-project" data-category="client">
         <div class="project-image">
           <img src="wedding-website.webp" alt="Website For Couple Wedding">
           <div class="project-category">Highlighted</div>
@@ -1510,7 +1564,7 @@
       </div>
 
       <!-- Rent Car -->
-      <div class="project-card highlighted-project">
+      <div class="project-card highlighted-project" data-category="client">
         <div class="project-image">
           <img src="rentcar.webp" alt="Website For Couple Wedding">
           <div class="project-category">Highlighted</div>
@@ -1544,219 +1598,223 @@
       <!-- Hidden projects -->
       <div id="more-projects" class="hidden">
 
-      <!-- Mini Telegram App -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="twix.webp" alt="Twix Project">
-          <div class="project-category">Desktop</div>
-        </div>
-        <div class="project-info">
-          <h3>Mini Telegram App (Daily Task)</h3>
-          <p>A lightweight daily task manager built as a Telegram mini app — lets users add, track, and complete tasks
-            directly inside the chat interface.</p>
-          <div class="project-tags">
-            <span class="project-tag">HTML/CSS</span>
-            <span class="project-tag">JavaScript</span>
-            <span class="project-tag">PostgreSQL</span>
-            <a href="https://mini-telegram-app-v1.vercel.app/" target="_blank" class="project-link">
-              <i class="fab fa-github"></i> Visit Website
-            </a>
+        <!-- Mini Telegram App -->
+        <div class="project-card" data-category="personal">
+          <div class="project-image">
+            <img src="twix.webp" alt="Twix Project">
+            <div class="project-category">Desktop</div>
+          </div>
+          <div class="project-info">
+            <h3>Mini Telegram App (Daily Task)</h3>
+            <p>A lightweight daily task manager built as a Telegram mini app — lets users add, track, and complete tasks
+              directly inside the chat interface.</p>
+            <div class="project-tags">
+              <span class="project-tag">HTML/CSS</span>
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">PostgreSQL</span>
+              <a href="https://mini-telegram-app-v1.vercel.app/" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> Visit Website
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Library Management System -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="Library_Capstone.webp" alt="Library System">
-          <div class="project-category">Capstone</div>
-        </div>
-        <div class="project-info">
-          <h3>Library Management System</h3>
-          <p>A capstone desktop application for managing book records, borrowing transactions, and student accounts —
-            integrated with Google API for extended functionality.</p>
-          <div class="project-tags">
-            <span class="project-tag">C# .NET</span>
-            <span class="project-tag">SQL Server</span>
-            <span class="project-tag">Google API</span>
-            <a href="https://github.com/kikenTheGreat/Library-Final" target="_blank" class="project-link">
-              <i class="fab fa-github"></i> View Project
-            </a>
+        <!-- Library Management System -->
+        <div class="project-card" data-category="personal">
+          <div class="project-image">
+            <img src="Library_Capstone.webp" alt="Library System">
+            <div class="project-category">School System</div>
+          </div>
+          <div class="project-info">
+            <h3>Library Management System</h3>
+            <p>A School System desktop application for managing book records, borrowing transactions, and student
+              accounts —
+              integrated with Google API for extended functionality.</p>
+            <div class="project-tags">
+              <span class="project-tag">C# .NET</span>
+              <span class="project-tag">SQL Server</span>
+              <span class="project-tag">Google API</span>
+              <a href="https://github.com/kikenTheGreat/Library-Final" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> View Project
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Horror Game -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="Game_Application.webp" alt="Game">
-          <div class="project-category">Game Dev</div>
-        </div>
-        <div class="project-info">
-          <h3>Horror Game Experience</h3>
-          <p>A 3D horror game built in Unity with custom assets modeled in Blender — featuring atmospheric environments,
-            jump scares, and immersive gameplay mechanics.</p>
-          <div class="project-tags">
-            <span class="project-tag">Unity</span>
-            <span class="project-tag">Blender</span>
-            <a href="https://github.com/kikenTheGreat/HorrorGAME" target="_blank" class="project-link">
-              <i class="fab fa-github"></i> View Project
-            </a>
+        <!-- Horror Game -->
+        <div class="project-card" data-category="personal">
+          <div class="project-image">
+            <img src="Game_Application.webp" alt="Game">
+            <div class="project-category">Game Dev</div>
+          </div>
+          <div class="project-info">
+            <h3>Horror Game Experience</h3>
+            <p>A 3D horror game built in Unity with custom assets modeled in Blender — featuring atmospheric
+              environments,
+              jump scares, and immersive gameplay mechanics.</p>
+            <div class="project-tags">
+              <span class="project-tag">Unity</span>
+              <span class="project-tag">Blender</span>
+              <a href="https://github.com/kikenTheGreat/HorrorGAME" target="_blank" class="project-link">
+                <i class="fab fa-github"></i> View Project
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- DERM AI -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="derm_logo.png" alt="DERM AI">
-          <div class="project-category">AI App</div>
-        </div>
-        <div class="project-info">
-          <h3>DERM AI</h3>
-          <p>Derm AI — AI-powered skin analysis app, letting users photograph skin conditions and receive instant
-            diagnostic suggestions — built to make dermatological insight accessible to everyone.</p>
-          <div class="project-tags">
-            <span class="project-tag">Python (Fast API)</span>
-            <span class="project-tag">Android Studio (Convert)</span>
-            <span class="project-tag">Vanilla JS</span>
-            <span class="project-tag">Tailwind</span>
-            <span class="project-tag">ML Model (Tensor Flow)</span>
-            <span class="project-tag">Supabase</span>
-            <span class="project-tag">GradCAM</span>
-            <button onclick="openDermCarousel()" class="project-link" style="background:none; cursor:pointer;">
-              <i class="fas fa-image"></i> View Image
-            </button>
+        <!-- DERM AI -->
+        <div class="project-card" data-category="personal">
+          <div class="project-image">
+            <img src="derm_logo.png" alt="DERM AI">
+            <div class="project-category">AI App</div>
+          </div>
+          <div class="project-info">
+            <h3>DERM AI</h3>
+            <p>Derm AI — AI-powered skin analysis app, letting users photograph skin conditions and receive instant
+              diagnostic suggestions — built to make dermatological insight accessible to everyone.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python (Fast API)</span>
+              <span class="project-tag">Android Studio (Convert)</span>
+              <span class="project-tag">Vanilla JS</span>
+              <span class="project-tag">Tailwind</span>
+              <span class="project-tag">ML Model (Tensor Flow)</span>
+              <span class="project-tag">Supabase</span>
+              <span class="project-tag">GradCAM</span>
+              <button onclick="openDermCarousel()" class="project-link" style="background:none; cursor:pointer;">
+                <i class="fas fa-image"></i> View Image
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Wedding Memories -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="event-photos123.png" alt="Wedding Memories">
-          <div class="project-category">Wedding Website</div>
-        </div>
-        <div class="project-info">
-          <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
-          <h3>Capture the Memories!</h3>
-          <p>Wedding Vault — letting couples and guests upload photos, videos, and audio from the big day to preserve
-            every moment in one place — built to make wedding memory-keeping effortless for everyone.</p>
-          <div class="project-tags">
-            <span class="project-tag">HTML</span>
-            <span class="project-tag">CSS</span>
-            <span class="project-tag">Tailwind</span>
-            <span class="project-tag">React</span>
-            <span class="project-tag">JavaScript</span>
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">Supabase</span>
-            <button onclick="openWeddingCarousel()" class="project-link" style="background:none; cursor:pointer;">
-              <i class="fas fa-image"></i> View Image
-            </button>
-            <a href="https://event-photos-pied.vercel.app/" target="_blank" class="project-link">
-              <i class="fas fa-up-right-from-square"></i> Visit Website
-            </a>
+        <!-- Wedding Memories -->
+        <div class="project-card" data-category="client">
+          <div class="project-image">
+            <img src="event-photos123.png" alt="Wedding Memories">
+            <div class="project-category">Wedding Website</div>
+          </div>
+          <div class="project-info">
+            <span class="highlight-pill"><i class="fas fa-star"></i> Featured</span>
+            <h3>Capture the Memories!</h3>
+            <p>Wedding Vault — letting couples and guests upload photos, videos, and audio from the big day to preserve
+              every moment in one place — built to make wedding memory-keeping effortless for everyone.</p>
+            <div class="project-tags">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">Tailwind</span>
+              <span class="project-tag">React</span>
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">Node.js</span>
+              <span class="project-tag">Supabase</span>
+              <button onclick="openWeddingCarousel()" class="project-link" style="background:none; cursor:pointer;">
+                <i class="fas fa-image"></i> View Image
+              </button>
+              <a href="https://event-photos-pied.vercel.app/" target="_blank" class="project-link">
+                <i class="fas fa-up-right-from-square"></i> Visit Website
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- WCG Consulting -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="wcg-consulting.webp" alt="WCG Consulting">
-          <div class="project-category">Enterprise</div>
-        </div>
-        <div class="project-info">
-          <h3>WCG Consulting</h3>
-          <p>An enterprise consulting platform for World City Group — managing client inquiries, service offerings, and
-            internal operations built with React and Supabase.</p>
-          <div class="project-tags">
-            <span class="project-tag">HTML</span>
-            <span class="project-tag">CSS</span>
-            <span class="project-tag">Tailwind</span>
-            <span class="project-tag">React</span>
-            <span class="project-tag">JavaScript</span>
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">Supabase</span>
-            <span class="project-link"><i class="fab fa-github"></i> For Publishing</span>
+        <!-- WCG Consulting -->
+        <div class="project-card" data-category="client">
+          <div class="project-image">
+            <img src="wcg-consulting.webp" alt="WCG Consulting">
+            <div class="project-category">Enterprise</div>
+          </div>
+          <div class="project-info">
+            <h3>WCG Consulting</h3>
+            <p>An enterprise consulting platform for World City Group — managing client inquiries, service offerings,
+              and
+              internal operations built with React and Supabase.</p>
+            <div class="project-tags">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">Tailwind</span>
+              <span class="project-tag">React</span>
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">Node.js</span>
+              <span class="project-tag">Supabase</span>
+              <span class="project-link"><i class="fab fa-github"></i> For Publishing</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Mobile Application Platform -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="CodeFest_Certificate.webp" alt="CodeFest">
-          <div class="project-category">Competition</div>
-        </div>
-        <div class="project-info">
-          <h3>Mobile Application Platform</h3>
-          <p class="project-description">
-            Built a functional app in a 5-hour team competition, working under intense time pressure to deliver a
-            complete solution.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">Android Studio</span>
-            <span class="project-tag">Java</span>
-            <span class="project-tag">SQLite</span>
-            <a href="https://drive.google.com/file/d/1PHimiTOzNvU48-sCS40NM4t6YwRM1z5e/view" target="_blank"
-              class="project-link">
-              <i class="fas fa-image"></i> View Image
-            </a>
+        <!-- Mobile Application Platform -->
+        <div class="project-card" data-category="achievement">
+          <div class="project-image">
+            <img src="CodeFest_Certificate.webp" alt="CodeFest">
+            <div class="project-category">Competition</div>
+          </div>
+          <div class="project-info">
+            <h3>Mobile Application Platform</h3>
+            <p class="project-description">
+              Built a functional app in a 5-hour team competition, working under intense time pressure to deliver a
+              complete solution.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Android Studio</span>
+              <span class="project-tag">Java</span>
+              <span class="project-tag">SQLite</span>
+              <a href="https://drive.google.com/file/d/1PHimiTOzNvU48-sCS40NM4t6YwRM1z5e/view" target="_blank"
+                class="project-link">
+                <i class="fas fa-image"></i> View Image
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- OOP Concept Mastery -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="CodingBee_Certificate.jpg" alt="Coding Bee">
-          <div class="project-category">Achievement</div>
+        <!-- OOP Concept Mastery -->
+        <div class="project-card" data-category="achievement">
+          <div class="project-image">
+            <img src="CodingBee_Certificate.jpg" alt="Coding Bee">
+            <div class="project-category">Achievement</div>
+          </div>
+          <div class="project-info">
+            <h3>OOP Concept Mastery</h3>
+            <p class="project-description">
+              competed against local schools solving OOP-based
+              problems under time pressure, testing fast thinking and strong programming fundamentals.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Java</span>
+              <span class="project-tag">C#</span>
+              <span class="project-tag">DSA</span>
+              <a href="https://drive.google.com/file/d/1IUnkn7VIOyRHp4J603EZIyfGv1otWM0D/view" target="_blank"
+                class="project-link">
+                <i class="fas fa-certificate"></i> View Certification
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="project-info">
-          <h3>OOP Concept Mastery</h3>
-          <p class="project-description">
-            competed against local schools solving OOP-based
-            problems under time pressure, testing fast thinking and strong programming fundamentals.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">Java</span>
-            <span class="project-tag">C#</span>
-            <span class="project-tag">DSA</span>
-            <a href="https://drive.google.com/file/d/1IUnkn7VIOyRHp4J603EZIyfGv1otWM0D/view" target="_blank"
+
+        <!-- YOUTH HACKATHON -->
+        <div class="project-card" data-category="achievement">
+          <div class="project-image">
+            <img src="Lusdoc_Hackaton (1).png" alt="IGNITE HACKathon 2025 Certificate">
+            <div class="project-category">ACHIEVEMENT</div>
+          </div>
+          <div class="project-info">
+            <h3>Certificate of Appreciation</h3>
+            <p class="project-description">
+              Recognized for presence and support during IGNITE HACKathon 2025, City Youth Development Office, Santa
+              Rosa,
+              Laguna.
+            </p>
+            <a href="https://drive.google.com/file/d/1wVob_J4IQesXs7LPEHr1PAOfctlW4CHG/view?usp=sharing" target="_blank"
               class="project-link">
               <i class="fas fa-certificate"></i> View Certification
             </a>
           </div>
         </div>
-      </div>
 
-      <!-- YOUTH HACKATHON -->
-      <div class="project-card">
-        <div class="project-image">
-          <img src="Lusdoc_Hackaton (1).png" alt="IGNITE HACKathon 2025 Certificate">
-          <div class="project-category">ACHIEVEMENT</div>
+        <!-- Show Less Button (inside expanded section) -->
+        <div class="show-more-wrapper" id="showLessWrapper">
+          <button class="btn-show-more expanded" onclick="collapseMoreProjects()">
+            <span>Show Less</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
         </div>
-        <div class="project-info">
-          <h3>Certificate of Appreciation</h3>
-          <p class="project-description">
-            Recognized for presence and support during IGNITE HACKathon 2025, City Youth Development Office, Santa Rosa,
-            Laguna.
-          </p>
-          <a href="https://drive.google.com/file/d/1wVob_J4IQesXs7LPEHr1PAOfctlW4CHG/view?usp=sharing" target="_blank"
-            class="project-link">
-            <i class="fas fa-certificate"></i> View Certification
-          </a>
-        </div>
-      </div>
-
-      <!-- Show Less Button (inside expanded section) -->
-      <div class="show-more-wrapper" id="showLessWrapper">
-        <button class="btn-show-more expanded" onclick="collapseMoreProjects()">
-          <span>Show Less</span>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-      </div>
 
       </div><!-- /#more-projects -->
 
@@ -1852,6 +1910,35 @@
       container.classList.add('hidden');
       topWrapper.style.display = 'flex';
       document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ── Portfolio Filter ───────────────────────────────────────
+    function filterProjects(filter, btn) {
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const allCards = document.querySelectorAll('.project-card[data-category]');
+      const moreContainer = document.getElementById('more-projects');
+      const topWrapper = document.getElementById('showMoreWrapper');
+
+      if (filter === 'all') {
+        // Restore show-more/less behavior
+        allCards.forEach(card => card.classList.remove('filter-hidden'));
+        moreContainer.classList.add('hidden');
+        topWrapper.style.display = 'flex';
+      } else {
+        // Expand all cards, hide non-matching
+        moreContainer.classList.remove('hidden');
+        topWrapper.style.display = 'none';
+        allCards.forEach(card => {
+          if (card.dataset.category === filter) {
+            card.classList.remove('filter-hidden');
+          } else {
+            card.classList.add('filter-hidden');
+          }
+        });
+      }
     }
 
     // Active navigation on scroll
