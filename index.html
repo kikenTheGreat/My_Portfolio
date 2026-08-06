@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <!-- [FIX 1] Viewport meta tag confirmed present -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" as="image" href="Lusdoc_EnhanceImage.webp">
   <title>Kent Jocel Lusdoc - Web Developer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -1278,6 +1279,25 @@
     .project-card.filter-hidden {
       display: none !important;
     }
+
+    /* Image Skeleton Loading Effect */
+    .project-image, .swiper-slide {
+      background-color: #2a313c;
+      animation: skeleton-pulse 1.5s infinite ease-in-out;
+      position: relative;
+    }
+    body.light-mode .project-image, body.light-mode .swiper-slide {
+      background-color: #e5e7eb;
+    }
+    @keyframes skeleton-pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+    .project-image img, .swiper-slide img {
+      position: relative;
+      z-index: 1;
+    }
   </style>
 </head>
 
@@ -1447,7 +1467,7 @@
       <!-- Rent Car -->
       <div class="project-card highlighted-project" data-category="personal">
         <div class="project-image">
-          <img src="rentcar.webp" alt="Website For Couple Wedding">
+          <img src="rentcar.webp" alt="Website For Couple Wedding" loading="lazy">
           <div class="project-category">Highlighted</div>
         </div>
         <div class="project-info">
@@ -1472,7 +1492,7 @@
       <!-- World City Real Estate Dubai -->
       <div class="project-card highlighted-project" data-category="client">
         <div class="project-image">
-          <img src="wcg-dubai.webp" alt="World City Real Estate">
+          <img src="wcg-dubai.webp" alt="World City Real Estate" loading="lazy">
           <div class="project-category">Highlighted</div>
         </div>
         <div class="project-info">
@@ -1496,7 +1516,7 @@
       <!-- World City Real Estate Ph -->
       <div class="project-card highlighted-project" data-category="client">
         <div class="project-image">
-          <img src="wcg-ph.webp" alt="World City Real Estate Ph">
+          <img src="wcg-ph.webp" alt="World City Real Estate Ph" loading="lazy">
           <div class="project-category">Highlighted</div>
         </div>
         <div class="project-info">
@@ -1522,7 +1542,7 @@
       <!-- World City Architect -->
       <div class="project-card highlighted-project" data-category="client">
         <div class="project-image">
-          <img src="wcg-architect.webp" alt="World City Architect">
+          <img src="wcg-architect.webp" alt="World City Architect" loading="lazy">
           <div class="project-category">Highlighted</div>
         </div>
         <div class="project-info">
@@ -1546,7 +1566,7 @@
       <!-- MICHIGAN WEBSITE  -->
       <div class="project-card highlighted-project" data-category="personal">
         <div class="project-image">
-          <img src="MICHIGAN.webp" alt="MICHIGAN WEBSITE">
+          <img src="MICHIGAN.webp" alt="MICHIGAN WEBSITE" loading="lazy">
           <div class="project-category">Highlighted</div>
         </div>
         <div class="project-info">
@@ -1570,7 +1590,7 @@
       <!-- Wedding Website -->
       <div class="project-card highlighted-project" data-category="personal">
         <div class="project-image">
-          <img src="wedding-website.webp" alt="Website For Couple Wedding">
+          <img src="wedding-website.webp" alt="Website For Couple Wedding" loading="lazy">
           <div class="project-category">Highlighted</div>
         </div>
         <div class="project-info">
@@ -1604,7 +1624,7 @@
         <!-- Solar Power Energy Corporation -->
         <div class="project-card" data-category="client">
           <div class="project-image">
-            <img src="solar.webp" alt="Solar Power Energy Corporation">
+            <img src="solar.webp" alt="Solar Power Energy Corporation" loading="lazy">
             <div class="project-category">Web Site</div>
           </div>
           <div class="project-info">
@@ -1628,7 +1648,7 @@
         <!-- Mini Telegram App -->
         <div class="project-card" data-category="personal">
           <div class="project-image">
-            <img src="twix.webp" alt="Twix Project">
+            <img src="twix.webp" alt="Twix Project" loading="lazy">
             <div class="project-category">Desktop</div>
           </div>
           <div class="project-info">
@@ -1649,7 +1669,7 @@
         <!-- Library Management System -->
         <div class="project-card" data-category="personal">
           <div class="project-image">
-            <img src="Library_Capstone.webp" alt="Library System">
+            <img src="Library_Capstone.webp" alt="Library System" loading="lazy">
             <div class="project-category">School System</div>
           </div>
           <div class="project-info">
@@ -1671,7 +1691,7 @@
         <!-- Horror Game -->
         <div class="project-card" data-category="personal">
           <div class="project-image">
-            <img src="Game_Application.webp" alt="Game">
+            <img src="Game_Application.webp" alt="Game" loading="lazy">
             <div class="project-category">Game Dev</div>
           </div>
           <div class="project-info">
@@ -1692,7 +1712,7 @@
         <!-- DERM AI -->
         <div class="project-card" data-category="personal">
           <div class="project-image">
-            <img src="derm_logo.png" alt="DERM AI">
+            <img src="derm_logo.png" alt="DERM AI" loading="lazy">
             <div class="project-category">AI App</div>
           </div>
           <div class="project-info">
@@ -1717,7 +1737,7 @@
         <!-- Wedding Memories -->
         <div class="project-card" data-category="personal">
           <div class="project-image">
-            <img src="event-photos123.png" alt="Wedding Memories">
+            <img src="event-photos123.png" alt="Wedding Memories" loading="lazy">
             <div class="project-category">Wedding Website</div>
           </div>
           <div class="project-info">
@@ -1746,7 +1766,7 @@
         <!-- WCG Consulting -->
         <div class="project-card" data-category="client">
           <div class="project-image">
-            <img src="wcg-consulting.webp" alt="WCG Consulting">
+            <img src="wcg-consulting.webp" alt="WCG Consulting" loading="lazy">
             <div class="project-category">Enterprise</div>
           </div>
           <div class="project-info">
@@ -1770,7 +1790,7 @@
         <!-- Mobile Application Platform -->
         <div class="project-card" data-category="achievement">
           <div class="project-image">
-            <img src="CodeFest_Certificate.webp" alt="CodeFest">
+            <img src="CodeFest_Certificate.webp" alt="CodeFest" loading="lazy">
             <div class="project-category">Competition</div>
           </div>
           <div class="project-info">
@@ -1794,7 +1814,7 @@
         <!-- OOP Concept Mastery -->
         <div class="project-card" data-category="achievement">
           <div class="project-image">
-            <img src="CodingBee_Certificate.jpg" alt="Coding Bee">
+            <img src="CodingBee_Certificate.jpg" alt="Coding Bee" loading="lazy">
             <div class="project-category">Achievement</div>
           </div>
           <div class="project-info">
@@ -1818,7 +1838,7 @@
         <!-- YOUTH HACKATHON -->
         <div class="project-card" data-category="achievement">
           <div class="project-image">
-            <img src="Lusdoc_Hackaton (1).png" alt="IGNITE HACKathon 2025 Certificate">
+            <img src="Lusdoc_Hackaton (1).png" alt="IGNITE HACKathon 2025 Certificate" loading="lazy">
             <div class="project-category">ACHIEVEMENT</div>
           </div>
           <div class="project-info">
@@ -1997,16 +2017,16 @@
       <!-- Swiper -->
       <div class="swiper derm-swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="derm_pic/signin.jpg" alt="Sign In"></div>
-          <div class="swiper-slide"><img src="derm_pic/signup.jpg" alt="Sign Up"></div>
-          <div class="swiper-slide"><img src="derm_pic/forgotpass.jpg" alt="Forgot Password"></div>
-          <div class="swiper-slide"><img src="derm_pic/healthy_skin.png" alt="Healthy Skin"></div>
-          <div class="swiper-slide"><img src="derm_pic/vascular_lesion.png" alt="Vascular Lesion"></div>
-          <div class="swiper-slide"><img src="derm_pic/chat_history.png" alt="Chat History"></div>
-          <div class="swiper-slide"><img src="derm_pic/export_pdf.png" alt="Export PDF"></div>
-          <div class="swiper-slide"><img src="derm_pic/archived.png" alt="Archived"></div>
-          <div class="swiper-slide"><img src="derm_pic/help_support.png" alt="Help & Support"></div>
-          <div class="swiper-slide"><img src="derm_pic/settings.png" alt="Settings"></div>
+          <div class="swiper-slide"><img src="derm_pic/signin.jpg" alt="Sign In" loading="lazy"></div>
+          <div class="swiper-slide"><img src="derm_pic/signup.jpg" alt="Sign Up" loading="lazy"></div>
+          <div class="swiper-slide"><img src="derm_pic/forgotpass.jpg" alt="Forgot Password" loading="lazy"></div>
+          <div class="swiper-slide"><img src="derm_pic/healthy_skin.png" alt="Healthy Skin" loading="lazy"></div>
+          <div class="swiper-slide"><img src="derm_pic/vascular_lesion.png" alt="Vascular Lesion" loading="lazy"></div>
+          <div class="swiper-slide"><img src="derm_pic/chat_history.png" alt="Chat History" loading="lazy"></div>
+          <div class="swiper-slide"><img src="derm_pic/export_pdf.png" alt="Export PDF" loading="lazy"></div>
+          <div class="swiper-slide"><img src="derm_pic/archived.png" alt="Archived" loading="lazy"></div>
+          <div class="swiper-slide"><img src="derm_pic/help_support.png" alt="Help & Support" loading="lazy"></div>
+          <div class="swiper-slide"><img src="derm_pic/settings.png" alt="Settings" loading="lazy"></div>
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev" style="color: white;"></div>
@@ -2022,8 +2042,8 @@
       <!-- Swiper -->
       <div class="swiper wedding-swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="wedding-admin.png" alt="Wedding Admin"></div>
-          <div class="swiper-slide"><img src="wedding-audio.png" alt="Wedding Audio"></div>
+          <div class="swiper-slide"><img src="wedding-admin.png" alt="Wedding Admin" loading="lazy"></div>
+          <div class="swiper-slide"><img src="wedding-audio.png" alt="Wedding Audio" loading="lazy"></div>
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev" style="color: white;"></div>
