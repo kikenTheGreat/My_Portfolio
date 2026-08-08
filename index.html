@@ -1280,19 +1280,13 @@
       display: none !important;
     }
 
-    /* Image Skeleton Loading Effect */
+    /* Image placeholder background (no animation) */
     .project-image, .swiper-slide {
       background-color: #2a313c;
-      animation: skeleton-pulse 1.5s infinite ease-in-out;
       position: relative;
     }
     body.light-mode .project-image, body.light-mode .swiper-slide {
       background-color: #e5e7eb;
-    }
-    @keyframes skeleton-pulse {
-      0% { opacity: 0.6; }
-      50% { opacity: 1; }
-      100% { opacity: 0.6; }
     }
     .project-image img, .swiper-slide img {
       position: relative;
