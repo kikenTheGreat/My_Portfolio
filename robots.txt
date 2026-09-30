@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://my-portfolio-liart-sigma-32.vercel.app/sitemap.xml
+Sitemap: https://kentjocellusdoc.vercel.app/sitemap.xml
