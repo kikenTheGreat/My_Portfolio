@@ -3,13 +3,73 @@
 
 <head>
   <meta charset="UTF-8">
-  <!-- [FIX 1] Viewport meta tag confirmed present -->
+  <!-- SEO: Core document metadata and canonical brand URL. Update the domain if your deployment URL changes. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Kent Jocel Lusdoc is a web developer building production-ready web applications with React, Vue, TypeScript, Laravel, and .NET for real business needs.">
+  <meta name="author" content="Kent Jocel Lusdoc">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="google-site-verification" content="REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_TOKEN">
+  <link rel="canonical" href="https://my-portfolio-liart-sigma-32.vercel.app/">
   <link rel="preload" as="image" href="Lusdoc_EnhanceImage.webp">
   <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" sizes="512x512" href="favicon.png">
-  <title>Kent Jocel Lusdoc - Web Developer</title>
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0d1117">
+  <!-- SEO: Open Graph metadata controls previews when the homepage is shared. -->
+  <meta property="og:title" content="Kent Jocel Lusdoc | Web Developer">
+  <meta property="og:description"
+    content="Portfolio of Kent Jocel Lusdoc, a web developer building production-ready web applications with modern technologies.">
+  <meta property="og:image" content="https://my-portfolio-liart-sigma-32.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kent Jocel Lusdoc - Web Developer">
+  <meta property="og:url" content="https://my-portfolio-liart-sigma-32.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kent Jocel Lusdoc">
+  <!-- SEO: Twitter/X uses the large image card for richer sharing previews. -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kent Jocel Lusdoc | Web Developer">
+  <meta name="twitter:description"
+    content="Portfolio of Kent Jocel Lusdoc, a web developer building production-ready web applications.">
+  <meta name="twitter:image" content="https://my-portfolio-liart-sigma-32.vercel.app/og-image.png">
+  <meta name="twitter:image:alt" content="Kent Jocel Lusdoc - Web Developer">
+  <!-- SEO: JSON-LD identifies the personal brand and the homepage entity to search engines. -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://my-portfolio-liart-sigma-32.vercel.app/#person",
+          "name": "Kent Jocel Lusdoc",
+          "jobTitle": "Web Developer",
+          "url": "https://my-portfolio-liart-sigma-32.vercel.app/",
+          "image": "https://my-portfolio-liart-sigma-32.vercel.app/Lusdoc_EnhanceImage.webp",
+          "description": "Web developer building production-ready web applications with TypeScript, React.js, Vue.js, Laravel, and .NET.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "PH"
+          },
+          "sameAs": [
+            "https://github.com/kikenTheGreat"
+          ],
+          "knowsAbout": ["Web development", "TypeScript", "React.js", "Vue.js", "Laravel", ".NET"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://my-portfolio-liart-sigma-32.vercel.app/#website",
+          "url": "https://my-portfolio-liart-sigma-32.vercel.app/",
+          "name": "Kent Jocel Lusdoc | Web Developer",
+          "description": "The professional portfolio of Kent Jocel Lusdoc.",
+          "publisher": { "@id": "https://my-portfolio-liart-sigma-32.vercel.app/#person" },
+          "inLanguage": "en"
+        }
+      ]
+    }
+  </script>
+  <title>Kent Jocel Lusdoc | Web Developer &amp; Software Engineer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -1296,11 +1356,43 @@
       z-index: 1;
     }
   </style>
+  <!-- SEO: Selected portfolio entries are represented as CreativeWork entities. -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Selected projects by Kent Jocel Lusdoc",
+      "itemListElement": [
+        {
+          "@type": "CreativeWork",
+          "position": 1,
+          "name": "World City Real Estate Dubai",
+          "url": "https://worldcityrealestate.com/",
+          "creator": { "@id": "https://my-portfolio-liart-sigma-32.vercel.app/#person" }
+        },
+        {
+          "@type": "CreativeWork",
+          "position": 2,
+          "name": "Wedding Memories",
+          "url": "https://event-photos-pied.vercel.app/",
+          "creator": { "@id": "https://my-portfolio-liart-sigma-32.vercel.app/#person" }
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "position": 3,
+          "name": "Library Management System",
+          "codeRepository": "https://github.com/kikenTheGreat/Library-Final",
+          "creator": { "@id": "https://my-portfolio-liart-sigma-32.vercel.app/#person" }
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body>
-  <!-- Navigation -->
-  <nav id="navbar">
+  <!-- Semantic header: keeps site navigation discoverable to assistive technology and crawlers. -->
+  <header>
+    <nav id="navbar" aria-label="Primary navigation">
     <div class="nav-container">
       <div class="logo">KL</div>
       <ul class="nav-menu">
@@ -1333,14 +1425,15 @@
       <a href="#portfolio">Portfolio</a>
       <a href="#contact">Contact</a>
     </div>
-  </nav>
+    </nav>
+  </header>
 
   <!-- Hero Section -->
-  <section class="hero" id="home">
+  <main>
+  <section class="hero" id="home" aria-labelledby="intro-heading">
     <div class="hero-grid">
       <div class="hero-content">
-        <h1>Kent Jocel<br>Lusdoc</h1>
-        <p class="role">Web Developer</p>
+        <h1 id="intro-heading">Kent Jocel Lusdoc<br>Web Developer</h1>
         <p>I build production-ready web applications using TypeScript, React.js, Vue.js, Laravel, and .NET. I
           focus on clean architecture, maintainable code, and practical delivery for real business needs.</p>
 
@@ -1365,7 +1458,8 @@
 
       <!-- [FIX 4] Image uses max-width: 100%; height: auto via global rule -->
       <div class="hero-image">
-        <img src="Lusdoc_EnhanceImage.webp" alt="Kent Jocel Lusdoc">
+        <img src="Lusdoc_EnhanceImage.webp" alt="Professional portrait of Kent Jocel Lusdoc, web developer"
+          width="864" height="1184" fetchpriority="high">
       </div>
     </div>
   </section>
@@ -1878,6 +1972,7 @@
       <a href="/Kent_Jocel_Lusdoc_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
     </div>
   </section>
+  </main>
 
   <!-- Footer -->
   <footer>
