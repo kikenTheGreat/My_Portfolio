@@ -1,10 +1,12 @@
-const CACHE_NAME = 'portfolio-cache-v2';
+const CACHE_NAME = 'portfolio-cache-v3';
 const urlsToCache = [
   './',
   './index.html'
 ];
 
 self.addEventListener('install', event => {
+  // Activate the new service worker right away instead of waiting for old tabs to close
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
@@ -14,6 +16,22 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
+  // Pages: network first so the latest HTML always shows; cache is the offline fallback
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          if (response && response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseToCache));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(response => {
@@ -55,6 +73,6 @@ self.addEventListener('activate', event => {
         cacheNames.filter(name => name !== CACHE_NAME)
           .map(name => caches.delete(name))
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
